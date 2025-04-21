@@ -1,0 +1,9 @@
+import { Home, User, Briefcase, FileText, Blocks } from 'lucide-react';
+
+export const NAVITEMS = [
+  { name: 'Home', url: '#home', icon: Home },
+  { name: 'Products', url: '#products', icon: User },
+  { name: 'Features', url: '#features', icon: Blocks },
+  { name: 'Pricing', url: '#pricing', icon: Briefcase },
+  { name: 'Contact us', url: '#contact', icon: FileText },
+];
