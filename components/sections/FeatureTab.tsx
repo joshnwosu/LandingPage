@@ -3,6 +3,7 @@ import { Layout, Pointer, Zap } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 interface TabContent {
   badge: string;
@@ -28,7 +29,6 @@ interface Feature108Props {
 }
 
 const FeatureTab = ({
-  badge = 'shadcnblocks.com',
   heading = 'A Collection of Components Built With Shadcn & Tailwind',
   description = 'Join us to build flawless web solutions.',
   tabs = [
@@ -83,7 +83,6 @@ const FeatureTab = ({
     <section className='py-32'>
       <div className='container mx-auto'>
         <div className='flex flex-col items-center gap-4 text-center'>
-          {/* <Badge variant='outline'>{badge}</Badge> */}
           <h1 className='max-w-2xl text-3xl font-semibold md:text-4xl'>
             {heading}
           </h1>

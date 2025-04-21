@@ -1,8 +1,7 @@
 'use client';
 
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Circle, MoveRight, PhoneCall } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { MorphingText } from '../shared/morphing-text';
 import { MORPHTEXT } from '@/data/morph-text';
@@ -73,9 +72,6 @@ function ElegantShape({
     </motion.div>
   );
 }
-
-// title1 = 'The Ultimate Search Engine for ',
-// title2 = 'Talent Recruiters',
 
 function Hero({
   badge = 'Ai Powered',

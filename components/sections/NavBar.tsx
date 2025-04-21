@@ -20,7 +20,7 @@ interface NavBarProps {
 
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(items[0].name);
-  const [isMobile, setIsMobile] = useState(false);
+  const [, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -65,7 +65,7 @@ export function NavBar({ items, className }: NavBarProps) {
 
     // Cleanup observer on unmount
     return () => observer.disconnect();
-  }, []);
+  }, [items]);
 
   // Handle smooth scrolling to section
   const scrollToSection = (url: string) => {
