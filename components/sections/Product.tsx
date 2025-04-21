@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
-
 interface ProductProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   subtitle?: {
