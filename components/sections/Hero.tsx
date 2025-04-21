@@ -163,7 +163,7 @@ function Hero({
             initial='hidden'
             animate='visible'
           >
-            <h1 className='text-4xl sm:text-6xl md:text-7xl mb-6 md:mb-8 tracking-tight font-sans text-nowrap'>
+            <h1 className='text-3xl md:text-5xl lg:text-7xl mb-6 md:mb-8 tracking-tight font-sans text-nowrap text-center'>
               <span className=''>{title}</span>
               <br />
 

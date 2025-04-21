@@ -19,7 +19,7 @@ export default function Home() {
       <section id='home'>
         <Hero />
       </section>
-      <main className='flex-grow px-4'>
+      <main className='flex-grow px-8'>
         <MarqueeSection />
         <section id='products'>
           <Product
