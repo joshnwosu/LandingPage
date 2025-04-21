@@ -57,7 +57,7 @@ const formSchema = z.object({
     .optional(),
 });
 
-export default function waitlist() {
+export default function Waitlist() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

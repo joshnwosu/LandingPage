@@ -1,7 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
-import { Layout, MoveRight, Pointer, Zap } from 'lucide-react';
-
-import { Badge } from '@/components/ui/badge';
+import { MoveRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
