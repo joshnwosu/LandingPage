@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { MorphingText } from '../shared/morphing-text';
 import { MORPHTEXT } from '@/data/morph-text';
 import { Button } from '../ui/button';
+import Link from 'next/link';
 
 function ElegantShape({
   className,
@@ -153,8 +154,8 @@ function Hero({
             animate='visible'
             className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border mb-8 md:mb-12'
           >
-            <Circle className='h-2 w-2 fill-rose-500/80' />
-            <span className='text-sm tracking-wide'>{badge}</span>
+            <Circle className='h-4 w-4 fill-green-500/80' />
+            <span className='text-lg tracking-wide'>{badge}</span>
           </motion.div>
 
           <motion.div
@@ -167,7 +168,7 @@ function Hero({
               <span className=''>{title}</span>
               <br />
 
-              <MorphingText texts={MORPHTEXT} className='my-6' />
+              <MorphingText texts={MORPHTEXT} className='my-2' />
             </h1>
           </motion.div>
 
@@ -190,13 +191,15 @@ function Hero({
               initial='hidden'
               animate='visible'
             >
-              <Button
-                size='lg'
-                className='gap-4 cursor-pointer font-sans'
-                variant='outline'
-              >
-                Jump on a call <PhoneCall className='w-4 h-4' />
-              </Button>
+              <Link href='/waitlist'>
+                <Button
+                  size='lg'
+                  className='gap-4 cursor-pointer font-sans'
+                  variant='outline'
+                >
+                  Jump on a call <PhoneCall className='w-4 h-4' />
+                </Button>
+              </Link>
             </motion.div>
             <motion.div
               custom={4}
@@ -204,9 +207,11 @@ function Hero({
               initial='hidden'
               animate='visible'
             >
-              <Button size='lg' className='gap-4 cursor-pointer font-sans'>
-                Join waitlist <MoveRight className='w-4 h-4' />
-              </Button>
+              <Link href='/waitlist'>
+                <Button size='lg' className='gap-4 cursor-pointer font-sans'>
+                  Join waitlist <MoveRight className='w-4 h-4' />
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </div>

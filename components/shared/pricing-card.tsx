@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import Link from 'next/link';
 
 export interface PricingTier {
   name: string;
@@ -51,7 +52,7 @@ export function PricingCard({ tier, paymentFrequency }: PricingCardProps) {
         )}
       </h2>
 
-      <div className='relative h-12'>
+      <div className='relative h-12 z-10'>
         {typeof price === 'number' ? (
           <>
             <NumberFlow
@@ -88,21 +89,23 @@ export function PricingCard({ tier, paymentFrequency }: PricingCardProps) {
         </ul>
       </div>
 
-      <Button
-        variant={isHighlighted ? 'secondary' : 'default'}
-        className='w-full joshua'
-      >
-        {tier.cta}
-        <ArrowRight className='ml-2 h-4 w-4' />
-      </Button>
+      <Link href='/waitlist'>
+        <Button
+          variant={isHighlighted ? 'secondary' : 'default'}
+          className='w-full relative z-10'
+        >
+          {tier.cta}
+          <ArrowRight className='ml-2 h-4 w-4' />
+        </Button>
+      </Link>
     </Card>
   );
 }
 
 const HighlightedBackground = () => (
-  <div className='absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:45px_45px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]' />
+  <div className='absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:45px_45px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] z-0' />
 );
 
 const PopularBackground = () => (
-  <div className='absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]' />
+  <div className='absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))] z-0' />
 );

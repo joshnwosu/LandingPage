@@ -1,11 +1,11 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
-import { Layout, Pointer, Zap } from 'lucide-react';
+import { Layout, MoveRight, Pointer, Zap } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface TabContent {
-  badge: string;
   title: string;
   description: string;
   buttonText: string;
@@ -21,71 +21,22 @@ interface Tab {
 }
 
 interface Feature108Props {
-  badge?: string;
   heading?: string;
   description?: string;
-  tabs?: Tab[];
+  tabs: Tab[];
 }
 
-const FeatureTab = ({
-  heading = 'A Collection of Components Built With Shadcn & Tailwind',
-  description = 'Join us to build flawless web solutions.',
-  tabs = [
-    {
-      value: 'tab-1',
-      icon: <Zap className='h-auto w-4 shrink-0' />,
-      label: 'Boost Revenue',
-      content: {
-        badge: 'Modern Tactics',
-        title: 'Make your site a true standout.',
-        description:
-          'Discover new web trends that help you craft sleek, highly functional sites that drive traffic and convert leads into customers.',
-        buttonText: 'See Plans',
-        imageSrc:
-          'https://shadcnblocks.com/images/block/placeholder-dark-1.svg',
-        imageAlt: 'placeholder',
-      },
-    },
-    {
-      value: 'tab-2',
-      icon: <Pointer className='h-auto w-4 shrink-0' />,
-      label: 'Higher Engagement',
-      content: {
-        badge: 'Expert Features',
-        title: 'Boost your site with top-tier design.',
-        description:
-          'Use stellar design to easily engage users and strengthen their loyalty. Create a seamless experience that keeps them coming back for more.',
-        buttonText: 'See Tools',
-        imageSrc:
-          'https://shadcnblocks.com/images/block/placeholder-dark-2.svg',
-        imageAlt: 'placeholder',
-      },
-    },
-    {
-      value: 'tab-3',
-      icon: <Layout className='h-auto w-4 shrink-0' />,
-      label: 'Stunning Layouts',
-      content: {
-        badge: 'Elite Solutions',
-        title: 'Build an advanced web experience.',
-        description:
-          'Lift your brand with modern tech that grabs attention and drives action. Create a digital experience that stands out from the crowd.',
-        buttonText: 'See Options',
-        imageSrc:
-          'https://shadcnblocks.com/images/block/placeholder-dark-3.svg',
-        imageAlt: 'placeholder',
-      },
-    },
-  ],
-}: Feature108Props) => {
+const FeatureTab = ({ heading, description, tabs }: Feature108Props) => {
   return (
     <section className='py-32'>
       <div className='container mx-auto'>
         <div className='flex flex-col items-center gap-4 text-center'>
-          <h1 className='max-w-2xl text-3xl font-semibold md:text-4xl'>
+          <h2 className='text-4xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto md:text-6xl bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
             {heading}
-          </h1>
-          <p className='text-muted-foreground'>{description}</p>
+          </h2>
+          <p className='text-muted-foreground max-w-2xl text-lg'>
+            {description}
+          </p>
         </div>
         <Tabs defaultValue={tabs[0].value} className='mt-8'>
           <TabsList className='container flex flex-col items-center justify-center gap-4 sm:flex-row md:gap-10'>
@@ -107,18 +58,17 @@ const FeatureTab = ({
                 className='grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10'
               >
                 <div className='flex flex-col gap-5'>
-                  <Badge variant='outline' className='w-fit bg-background'>
-                    {tab.content.badge}
-                  </Badge>
                   <h3 className='text-3xl font-semibold lg:text-5xl'>
                     {tab.content.title}
                   </h3>
                   <p className='text-muted-foreground lg:text-lg'>
                     {tab.content.description}
                   </p>
-                  <Button className='mt-2.5 w-fit gap-2' size='lg'>
-                    {tab.content.buttonText}
-                  </Button>
+                  <Link href='/waitlist'>
+                    <Button className='mt-2.5 w-fit gap-2' size='lg'>
+                      {tab.content.buttonText} <MoveRight className='w-4 h-4' />
+                    </Button>
+                  </Link>
                 </div>
                 <img
                   src={tab.content.imageSrc}

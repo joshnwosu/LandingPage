@@ -11,6 +11,7 @@ import { FEATURES3 } from '@/data/features';
 import { NAVITEMS } from '@/data/nav-items';
 import { PAYMENT_FREQUENCIES, TIERS } from '@/data/pricing';
 import Feature from '@/components/sections/Feature';
+import FAQ from '@/components/sections/FAQ';
 
 export default function Home() {
   return (
@@ -30,7 +31,7 @@ export default function Home() {
             }}
             description='Transform your ideas into reality with our comprehensive suite of development tools and resources.'
             ctaText='Book a Demo'
-            ctaHref='/signup'
+            ctaHref='/waitlist'
             bottomImage={{
               light: 'https://www.launchuicomponents.com/app-light.png',
               dark: 'https://www.launchuicomponents.com/app-dark.png',
@@ -49,7 +50,7 @@ export default function Home() {
         </section>
         <section id='pricing'>
           <Pricing
-            title='Our plans & pricing'
+            title='plans & pricing'
             subtitle="Whether you’re looking for a sourcing platform or a complete recruitment solution, we've got the perfect companion for you"
             frequencies={PAYMENT_FREQUENCIES}
             tiers={TIERS}
@@ -57,6 +58,9 @@ export default function Home() {
         </section>
         <section id='contact'>
           <FeatureTab {...FEATURES3} />
+        </section>
+        <section id='faq'>
+          <FAQ />
         </section>
         <Footer />
       </main>

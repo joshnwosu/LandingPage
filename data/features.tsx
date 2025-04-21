@@ -1,4 +1,4 @@
-import { Layout, Pointer, Zap } from 'lucide-react';
+import { Layout, Mail, Pointer, Zap } from 'lucide-react';
 
 export const FEATURES = [
   {
@@ -28,20 +28,19 @@ export const FEATURES = [
 ];
 
 export const FEATURES3 = {
-  badge: 'shadcnblocks.com',
-  heading: 'A Collection of Components Built With Shadcn & Tailwind',
-  description: 'Join us to build flawless web solutions.',
+  heading: 'Global Talent Network',
+  description:
+    'Access a vast network of over 800 million professional profiles worldwide.',
   tabs: [
     {
       value: 'tab-1',
       icon: <Zap className='h-auto w-4 shrink-0' />,
-      label: 'Boost Revenue',
+      label: 'Search (PeopleGPT)',
       content: {
-        badge: 'Modern Tactics',
-        title: 'Make your site a true standout.',
+        title: 'Discover talent through AI-powered search',
         description:
-          'Discover new web trends that help you craft sleek, highly functional sites that drive traffic and convert leads into customers.',
-        buttonText: 'See Plans',
+          'Elevate your recruitment strategy with PeopleGPT, the AI-powered search platform that transforms how you find talent. Streamline your search with semantic natural language queries – no need for complicated boolean strings.',
+        buttonText: 'Try for free',
         imageSrc:
           'https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg',
         imageAlt: 'placeholder',
@@ -50,13 +49,12 @@ export const FEATURES3 = {
     {
       value: 'tab-2',
       icon: <Pointer className='h-auto w-4 shrink-0' />,
-      label: 'Higher Engagement',
+      label: 'Talent Insights',
       content: {
-        badge: 'Expert Features',
-        title: 'Boost your site with top-tier design.',
+        title: 'Uncover new data by leveraging Talent Insights',
         description:
-          'Use stellar design to easily engage users and strengthen their loyalty. Create a seamless experience that keeps them coming back for more.',
-        buttonText: 'See Tools',
+          'Analyze comprehensive data directly tied to your searches and uncover valuable insights instantly. Benefit from an integrated overview of your talent pool and confidently act on curated findings that drive you forward.',
+        buttonText: 'Try for free',
         imageSrc:
           'https://www.shadcnblocks.com/images/block/placeholder-dark-2.svg',
         imageAlt: 'placeholder',
@@ -64,14 +62,13 @@ export const FEATURES3 = {
     },
     {
       value: 'tab-3',
-      icon: <Layout className='h-auto w-4 shrink-0' />,
-      label: 'Stunning Layouts',
+      icon: <Mail className='h-auto w-4 shrink-0' />,
+      label: 'Email Outreach',
       content: {
-        badge: 'Elite Solutions',
-        title: 'Build an advanced web experience.',
+        title: 'Convert candidates with AI email campaigns',
         description:
-          'Lift your brand with modern tech that grabs attention and drives action. Create a digital experience that stands out from the crowd.',
-        buttonText: 'See Options',
+          'Maximize candidate engagement with AI-powered email campaigns that reflect your unique voice. Personalize messaging at scale using templates and AI commands, ensuring a 40% increase in response rates.',
+        buttonText: 'Try for free',
         imageSrc:
           'https://www.shadcnblocks.com/images/block/placeholder-dark-3.svg',
         imageAlt: 'placeholder',

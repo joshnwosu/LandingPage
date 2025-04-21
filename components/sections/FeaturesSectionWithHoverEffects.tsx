@@ -1,30 +1,31 @@
 import { cn } from '@/lib/utils';
-import { Monitor, Blocks, CreditCard, Webhook } from 'lucide-react';
+import { Search, FileCheck, Calendar, BarChart } from 'lucide-react';
 
 export default function FeaturesSectionWithHoverEffects() {
   const features = [
     {
-      title: 'Built for developers',
+      title: 'Sourcing Agent',
       description:
-        'Built for engineers, developers, dreamers, thinkers and doers.',
-      icon: <Blocks />,
+        'Automatically source databases and social networks to identify potential candidates.',
+      icon: <Search />,
     },
     {
-      title: 'Ease of use',
+      title: 'Screening Agents',
       description:
-        "It's as easy as using an Apple, and as expensive as buying one.",
-      icon: <Monitor />,
+        'Quickly review resumes and applications, highlighting standout qualifications.',
+      icon: <FileCheck />,
     },
     {
-      title: 'Pricing like no other',
+      title: 'Interview Agent',
       description:
-        'Our prices are best in the market. No cap, no lock, no credit card required.',
-      icon: <CreditCard />,
+        'Schedule interviews and even conduct preliminary screenings through chat or video.',
+      icon: <Calendar />,
     },
     {
-      title: '100% Uptime guarantee',
-      description: 'We just cannot be taken down by anyone.',
-      icon: <Webhook />,
+      title: 'Competitor Analysis Agent',
+      description:
+        'Analyze competitors talent strategies, helping you stay ahead in acquiring top talent.',
+      icon: <BarChart />,
     },
   ];
   return (
@@ -70,7 +71,7 @@ const Feature = ({
           {title}
         </span>
       </div>
-      <p className='text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10'>
+      <p className='text-lg text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10'>
         {description}
       </p>
     </div>

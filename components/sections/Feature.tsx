@@ -20,16 +20,17 @@ export default function Feature() {
             </div>
           )}
           <div className='flex gap-4 flex-col justify-center items-center'>
-            <h1 className='text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans'>
+            <h1 className='text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans capitalize'>
               <span className='text-spektr-cyan-50 font-extralight'>
-                The Best Search Engine for{' '}
+                The right features for your{' '}
               </span>
+              <br />
               <span
                 className={cn(
                   'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200'
                 )}
               >
-                Recruiters
+                use case
               </span>
             </h1>
 
