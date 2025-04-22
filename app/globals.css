@@ -122,3 +122,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+.flag-container {
+  height: 20px; /* Adjust as needed */
+  width: 28px; /* Adjust as needed */
+}
+
+.flag-container svg {
+  width: 100%;
+  height: 100%;
+  /* display: none !important; */
+}

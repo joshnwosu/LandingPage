@@ -3,11 +3,9 @@
 import { BackgroundBeams } from '@/components/shared/background-beams';
 import { GridBackground } from '@/components/shared/grid-background';
 import { cn } from '@/lib/utils';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -17,16 +15,13 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import {
-  Building,
-  Globe,
-  Link,
-  Mail,
-  MoveRight,
-  Phone,
-  User,
-} from 'lucide-react';
+import { Building, Mail, MoveRight, User } from 'lucide-react';
+import { PhoneInput } from '@/components/shared/phone-input';
+import { parsePhoneNumber } from 'react-phone-number-input';
+import { useEffect, useState } from 'react';
+import { SuccessModal } from '@/components/shared/success-modal';
 
+// Zod schema remains the same
 const formSchema = z.object({
   name: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
@@ -51,13 +46,17 @@ const formSchema = z.object({
     .optional(),
   reg_channel: z
     .string()
-    .min(2, {
-      message: 'Please specify how you heard about us.',
-    })
+    // .min(2, {
+    //   message: 'Please specify how you heard about us.',
+    // })
     .optional(),
 });
 
 export default function Waitlist() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -70,26 +69,92 @@ export default function Waitlist() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  // Watch phone_number field to detect changes
+  const phoneNumber = form.watch('phone_number');
+
+  // Auto-populate country based on phone number
+  useEffect(() => {
+    if (phoneNumber) {
+      try {
+        const parsedNumber = parsePhoneNumber(phoneNumber);
+        if (parsedNumber && parsedNumber.country) {
+          // Map country code to country name
+          const countryName = new Intl.DisplayNames(['en'], {
+            type: 'region',
+          }).of(parsedNumber.country);
+          form.setValue('country', countryName || parsedNumber.country, {
+            shouldValidate: true,
+          });
+        } else {
+          form.setValue('country', '', { shouldValidate: true });
+        }
+      } catch (error) {
+        form.setValue('country', '', { shouldValidate: true });
+        console.log('Error: ', error);
+      }
+    } else {
+      form.setValue('country', '', { shouldValidate: true });
+    }
+  }, [phoneNumber, form]);
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      // Parse phone number to get country code
+      let countryCode = 'NG'; // Default to Nigeria as per example
+      if (values.phone_number) {
+        const parsedNumber = parsePhoneNumber(values.phone_number);
+        if (parsedNumber && parsedNumber.country) {
+          countryCode = parsedNumber.country;
+        }
+      }
+
+      // Prepare payload
+      const payload = {
+        name: values.name,
+        email: values.email,
+        phone_number: values.phone_number || '',
+        country: values.country,
+        country_code: countryCode,
+        company_name: values.company_name || '',
+        reg_channel: values.reg_channel || 'linkedin',
+      };
+
+      // Make API request
+      const response = await fetch(
+        'https://api-sandbox.getfless.com/api/join_talent_place_waitinglist',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to join waitlist. Please try again.');
+      }
+
+      // On success
+      setIsModalOpen(true);
+      form.reset(); // Reset form after successful submission
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : 'An unexpected error occurred'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <div className='relative min-h-screen'>
       <GridBackground />
       <BackgroundBeams />
-      {/* <FlickeringGrid
-        className="z-0 absolute inset-0 size-full"
-        squareSize={4}
-        gridGap={6}
-        color="#6B7280"
-        maxOpacity={0.5}
-        flickerChance={0.1}
-        height={800}
-        width={800}
-      /> */}
+
       <div className='relative z-10 flex items-center justify-center min-h-screen'>
         <div className='flex flex-col items-center justify-center'>
           <div className='space-y-6 text-center'>
@@ -124,8 +189,8 @@ export default function Waitlist() {
                           <div className='relative'>
                             <User className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
                             <Input
-                              placeholder='Your name'
-                              className='py-6 pl-10'
+                              placeholder='Fullname'
+                              className='h-12 pl-10'
                               {...field}
                             />
                           </div>
@@ -143,8 +208,8 @@ export default function Waitlist() {
                           <div className='relative'>
                             <Mail className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
                             <Input
-                              placeholder='Your email'
-                              className='py-6 pl-10'
+                              placeholder='Email address'
+                              className='h-12 pl-10'
                               {...field}
                             />
                           </div>
@@ -160,11 +225,14 @@ export default function Waitlist() {
                       <FormItem>
                         <FormControl>
                           <div className='relative'>
-                            <Phone className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
-                            <Input
-                              placeholder='Your phone number'
-                              className='py-6 pl-10'
+                            <PhoneInput
+                              placeholder='Phone number'
+                              className='h-12'
                               {...field}
+                              defaultCountry='US'
+                              onChange={(value) => {
+                                field.onChange(value); // Update form state
+                              }}
                             />
                           </div>
                         </FormControl>
@@ -172,25 +240,7 @@ export default function Waitlist() {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name='country'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className='relative'>
-                            <Globe className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
-                            <Input
-                              placeholder='Your country'
-                              className='py-6 pl-10'
-                              {...field}
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+
                   <FormField
                     control={form.control}
                     name='company_name'
@@ -200,27 +250,8 @@ export default function Waitlist() {
                           <div className='relative'>
                             <Building className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
                             <Input
-                              placeholder='Your company name'
-                              className='py-6 pl-10'
-                              {...field}
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name='reg_channel'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className='relative'>
-                            <Link className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
-                            <Input
-                              placeholder='E.g., LinkedIn, Indeed'
-                              className='py-6 pl-10'
+                              placeholder='Company name'
+                              className='h-12 pl-10'
                               {...field}
                             />
                           </div>
@@ -234,14 +265,28 @@ export default function Waitlist() {
                   type='submit'
                   className='w-full py-6'
                   variant='secondary'
+                  disabled={isSubmitting}
                 >
-                  Continue <MoveRight className='ml-2 h-4 w-4' />
+                  {isSubmitting ? 'Submitting...' : 'Continue'}{' '}
+                  <MoveRight className='ml-2 h-4 w-4' />
                 </Button>
+
+                {error && (
+                  <div className='text-red-500 text-center'>{error}</div>
+                )}
               </form>
             </Form>
           </div>
         </div>
       </div>
+
+      <SuccessModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="We've added you to our waiting list!"
+        message="We'll let you know when TalentTrace is ready."
+        buttonText='Got it!'
+      />
     </div>
   );
 }
