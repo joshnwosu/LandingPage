@@ -62,7 +62,7 @@ export const MarqueeItem = ({ className, ...props }: MarqueeItemProps) => (
 function MarqueeSection() {
   const arr = [Logos.tailwindcss, Logos.framer, Logos.nextjs, Logos.aws];
   return (
-    <div className='py-10'>
+    <div className='pt-10'>
       <p className='text-lg md:text-xl leading-relaxed tracking-tight text-center text-muted-foreground'>
         Trusted by 3000+ recruiters worldwide
       </p>

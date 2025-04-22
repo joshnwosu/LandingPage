@@ -71,9 +71,9 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>(
       <div className={cn('relative', className)} ref={ref} {...props}>
         <div className='relative max-w-full mx-auto z-1'>
           <RetroGrid {...gridOptions} />
-          <div className='max-w-screen-xl z-10 mx-auto px-4 py-8 md:py-30 gap-12 md:px-8'>
+          <div className='max-w-screen-xl z-10 mx-auto px-4 py-18 md:py-30 gap-12 md:px-8'>
             <div className='space-y-5 max-w-6xl leading-0 lg:leading-5 mx-auto text-center'>
-              <h2 className='text-4xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto md:text-6xl bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
+              <h2 className='text-3xl md:text-7xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto  bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
                 {subtitle.regular} <br />
                 <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200'>
                   {subtitle.gradient}

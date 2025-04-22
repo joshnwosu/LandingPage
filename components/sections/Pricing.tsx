@@ -30,7 +30,7 @@ export default function Pricing({
         <div className='space-y-4 flex flex-col justify-center items-center'>
           {/* <h1 className='text-4xl font-medium md:text-5xl '>{title}</h1> */}
 
-          <h1 className='text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans capitalize'>
+          <h1 className='text-3xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans capitalize'>
             <span
               className={cn(
                 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200'

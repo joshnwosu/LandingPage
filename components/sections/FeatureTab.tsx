@@ -29,7 +29,7 @@ const FeatureTab = ({ heading, description, tabs }: Feature108Props) => {
     <section className='py-10 md:py-30'>
       <div className='container mx-auto'>
         <div className='flex flex-col items-center gap-4 text-center'>
-          <h2 className='text-4xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto md:text-6xl bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
+          <h2 className='text-3xl  md:text-7xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
             {heading}
           </h2>
           <p className='text-muted-foreground max-w-2xl text-lg'>

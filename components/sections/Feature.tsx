@@ -20,7 +20,7 @@ export default function Feature() {
             </div>
           )}
           <div className='flex gap-4 flex-col justify-center items-center'>
-            <h1 className='text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans capitalize'>
+            <h1 className='text-3xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans capitalize'>
               <span className='text-spektr-cyan-50 font-extralight'>
                 The right features for your{' '}
               </span>
