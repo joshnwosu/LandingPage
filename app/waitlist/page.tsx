@@ -175,7 +175,7 @@ export default function Waitlist() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1, duration: 0.3 }}
             >
-              <h1 className='text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans'>
+              <h1 className='text-3xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans'>
                 <span className='text-spektr-cyan-50 font-extralight'>
                   Join the waitlist for the{' '}
                 </span>
