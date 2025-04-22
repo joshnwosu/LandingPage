@@ -6,7 +6,7 @@ import FeaturesSectionWithHoverEffects from './FeaturesSectionWithHoverEffects';
 export default function Feature() {
   return (
     <div className='w-full'>
-      <div className='container mx-auto py-30 lg:py-20 '>
+      <div className='container mx-auto py-10 lg:py-20 '>
         <div className='flex gap-8 items-center justify-center flex-col'>
           {false && (
             <div>

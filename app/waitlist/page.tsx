@@ -25,7 +25,7 @@ import { motion } from 'framer-motion';
 // Zod schema remains the same
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
+    message: 'Fullname must be at least 2 characters.',
   }),
   email: z.string().email({
     message: 'Please enter a valid email address.',

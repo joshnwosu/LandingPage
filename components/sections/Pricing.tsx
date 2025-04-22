@@ -24,7 +24,7 @@ export default function Pricing({
   );
 
   return (
-    <div className='flex flex-col items-center gap-10 py-30 font-sans relative'>
+    <div className='flex flex-col items-center gap-10 py-10 md:py-30 font-sans relative'>
       <GridBackground />
       <div className='space-y-7 text-center'>
         <div className='space-y-4 flex flex-col justify-center items-center'>

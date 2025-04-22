@@ -26,7 +26,7 @@ const items = [
 export default function FAQ() {
   return (
     <div className='relative max-w-full mx-auto'>
-      <div className='space-y-4 max-w-[700px] mx-auto py-28 '>
+      <div className='space-y-4 max-w-[700px] mx-auto py-10 md:py-28'>
         <h2 className='text-4xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto md:text-6xl bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)] text-center'>
           Have Questions?
           <br />
