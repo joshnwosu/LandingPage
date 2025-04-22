@@ -165,7 +165,7 @@ export default function Waitlist() {
           >
             <div className='flex justify-center items-center mb-10 border-border border-8 w-30 h-30 rounded-full'>
               <div className='flex justify-center items-center border border-border w-20 h-20 rounded-full'>
-                <MailCheck className='h-10 w-10 text-neutral-500' />
+                <MailCheck className='h-10 w-10 text-neutral-500 dark:text-orange-200' />
               </div>
             </div>
           </motion.div>
