@@ -15,11 +15,12 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Building, Mail, MoveRight, User } from 'lucide-react';
+import { Building, Mail, MailCheck, MoveRight, User } from 'lucide-react';
 import { PhoneInput } from '@/components/shared/phone-input';
 import { parsePhoneNumber } from 'react-phone-number-input';
 import { useEffect, useState } from 'react';
 import { SuccessModal } from '@/components/shared/success-modal';
+import { motion } from 'framer-motion';
 
 // Zod schema remains the same
 const formSchema = z.object({
@@ -157,125 +158,148 @@ export default function Waitlist() {
 
       <div className='relative z-10 flex items-center justify-center min-h-screen'>
         <div className='flex flex-col items-center justify-center'>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.3 }}
+          >
+            <div className='flex justify-center items-center mb-10 border-border border-8 w-30 h-30 rounded-full'>
+              <div className='flex justify-center items-center border border-border w-20 h-20 rounded-full'>
+                <MailCheck className='h-10 w-10 text-neutral-500' />
+              </div>
+            </div>
+          </motion.div>
           <div className='space-y-6 text-center'>
-            <h1 className='text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans'>
-              <span className='text-spektr-cyan-50 font-extralight'>
-                Join the waitlist for the{' '}
-              </span>
-              <br />
-              <span
-                className={cn(
-                  'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200'
-                )}
-              >
-                Best Hire!
-              </span>
-            </h1>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
+            >
+              <h1 className='text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans'>
+                <span className='text-spektr-cyan-50 font-extralight'>
+                  Join the waitlist for the{' '}
+                </span>
+                <br />
+                <span
+                  className={cn(
+                    'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200'
+                  )}
+                >
+                  Best Hire!
+                </span>
+              </h1>
+            </motion.div>
           </div>
 
           <div className='w-full max-w-[600px] mx-auto p-8 space-y-12'>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className='space-y-8'
-              >
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                  <FormField
-                    control={form.control}
-                    name='name'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className='relative'>
-                            <User className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
-                            <Input
-                              placeholder='Fullname'
-                              className='h-12 pl-10'
-                              {...field}
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name='email'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className='relative'>
-                            <Mail className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
-                            <Input
-                              placeholder='Email address'
-                              className='h-12 pl-10'
-                              {...field}
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name='phone_number'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className='relative'>
-                            <PhoneInput
-                              placeholder='Phone number'
-                              className='h-12'
-                              {...field}
-                              defaultCountry='US'
-                              onChange={(value) => {
-                                field.onChange(value); // Update form state
-                              }}
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name='company_name'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className='relative'>
-                            <Building className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
-                            <Input
-                              placeholder='Company name'
-                              className='h-12 pl-10'
-                              {...field}
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <Button
-                  type='submit'
-                  className='w-full py-6'
-                  variant='secondary'
-                  disabled={isSubmitting}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.3 }}
+            >
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className='space-y-8'
                 >
-                  {isSubmitting ? 'Submitting...' : 'Continue'}{' '}
-                  <MoveRight className='ml-2 h-4 w-4' />
-                </Button>
+                  <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                    <FormField
+                      control={form.control}
+                      name='name'
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <div className='relative'>
+                              <User className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
+                              <Input
+                                placeholder='Fullname'
+                                className='h-12 pl-10'
+                                {...field}
+                              />
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name='email'
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <div className='relative'>
+                              <Mail className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
+                              <Input
+                                placeholder='Email address'
+                                className='h-12 pl-10'
+                                {...field}
+                              />
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name='phone_number'
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <div className='relative'>
+                              <PhoneInput
+                                placeholder='Phone number'
+                                className='h-12'
+                                {...field}
+                                defaultCountry='US'
+                                onChange={(value) => {
+                                  field.onChange(value); // Update form state
+                                }}
+                              />
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                {error && (
-                  <div className='text-red-500 text-center'>{error}</div>
-                )}
-              </form>
-            </Form>
+                    <FormField
+                      control={form.control}
+                      name='company_name'
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <div className='relative'>
+                              <Building className='absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600' />
+                              <Input
+                                placeholder='Company name'
+                                className='h-12 pl-10'
+                                {...field}
+                              />
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <Button
+                    type='submit'
+                    className='w-full py-6'
+                    variant='secondary'
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Continue'}{' '}
+                    <MoveRight className='ml-2 h-4 w-4' />
+                  </Button>
+
+                  {error && (
+                    <div className='text-red-500 text-center'>{error}</div>
+                  )}
+                </form>
+              </Form>
+            </motion.div>
           </div>
         </div>
       </div>
