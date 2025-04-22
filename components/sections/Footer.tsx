@@ -13,10 +13,10 @@ import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 export default function Footer() {
   return (
     <footer className='relative border-t bg-background text-foreground transition-colors duration-300 font-sans'>
-      <div className='container mx-auto px-4 py-12 md:px-6 lg:px-8'>
+      <div className='container max-w-7xl mx-auto px-4 py-12 md:px-6 lg:px-8'>
         <div className='grid gap-12 md:grid-cols-2 lg:grid-cols-4'>
           <div className='relative'>
-            <h2 className='mb-4 text-3xl font-bold tracking-tight'>
+            <h2 className='mb-4 text-2xl font-light tracking-tight'>
               TalentTrace
             </h2>
             <p className='mb-6 text-muted-foreground'>
@@ -45,12 +45,6 @@ export default function Footer() {
                 className='block transition-colors hover:text-primary'
               >
                 Pricing
-              </a>
-              <a
-                href='#'
-                className='block transition-colors hover:text-primary'
-              >
-                Products
               </a>
               <a
                 href='#'
