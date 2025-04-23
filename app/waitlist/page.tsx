@@ -1,6 +1,5 @@
 'use client';
 
-import { BackgroundBeams } from '@/components/shared/background-beams';
 import { GridBackground } from '@/components/shared/grid-background';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -154,7 +153,6 @@ export default function Waitlist() {
   return (
     <div className='relative min-h-screen'>
       <GridBackground />
-      <BackgroundBeams />
 
       <div className='relative z-10 flex items-center justify-center min-h-screen'>
         <div className='flex flex-col items-center justify-center'>
@@ -175,10 +173,8 @@ export default function Waitlist() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1, duration: 0.3 }}
             >
-              <h1 className='text-3xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans'>
-                <span className='text-spektr-cyan-50 font-extralight'>
-                  Join the waitlist for the{' '}
-                </span>
+              <h1 className='text-5xl md:text-7xl tracking-tighter font-sans bg-clip-text text-transparent mx-auto  bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
+                <span>Join the waitlist for the </span>
                 <br />
                 <span
                   className={cn(

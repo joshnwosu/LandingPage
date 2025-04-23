@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ModeToggle } from '../shared/mode-toggle';
+import { Button } from '../ui/button';
 
 interface NavItem {
   name: string;
@@ -131,6 +132,18 @@ export function NavBar({ items, className }: NavBarProps) {
             </Link>
           );
         })}
+
+        <div className='flex flex-row gap-3'>
+          <Link href='/waitlist'>
+            <Button
+              size='lg'
+              className='gap-4 cursor-pointer font-sans rounded-full'
+            >
+              Get Started
+            </Button>
+          </Link>
+        </div>
+
         {false && <ModeToggle />}
       </div>
     </div>
