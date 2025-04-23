@@ -53,7 +53,7 @@ export default function ForgotPasswordPage() {
         </motion.div>
       </div>
 
-      <div className='w-[400px] mx-auto space-y-12'>
+      <div className='w-full max-w-[400px] mx-auto space-y-12'>
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
