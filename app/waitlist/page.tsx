@@ -151,7 +151,7 @@ export default function Waitlist() {
   }
 
   return (
-    <div className='relative min-h-screen'>
+    <div className='relative min-h-screen font-sans'>
       <GridBackground />
 
       <div className='relative z-10 flex items-center justify-center min-h-screen'>
@@ -198,7 +198,7 @@ export default function Waitlist() {
                   onSubmit={form.handleSubmit(onSubmit)}
                   className='space-y-8'
                 >
-                  <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                  <div className='grid grid-cols-1 md:grid-cols-2 gap-6 items-start'>
                     <FormField
                       control={form.control}
                       name='name'
