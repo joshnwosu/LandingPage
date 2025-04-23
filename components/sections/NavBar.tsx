@@ -133,7 +133,7 @@ export function NavBar({ items, className }: NavBarProps) {
           );
         })}
 
-        <div className='flex flex-row gap-3'>
+        <div className='hidden md:flex flex-row gap-3'>
           <Link href='/waitlist'>
             <Button
               size='lg'
