@@ -7,7 +7,7 @@ export default function GoogleButton() {
         <span className='text-xs text-muted-foreground'>Or create with</span>
       </div>
 
-      <Button variant='outline' className='w-full h-12'>
+      <Button variant='outline' className='w-full h-12' type='button'>
         <svg
           stroke='currentColor'
           fill='currentColor'
