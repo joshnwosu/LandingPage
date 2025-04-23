@@ -8,7 +8,6 @@ import { MORPHTEXT } from '@/data/morph-text';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import { GridBackground } from '../shared/grid-background';
-import { BackgroundBeams } from '../shared/background-beams';
 
 function ElegantShape({
   className,
@@ -95,7 +94,6 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
       <div className='absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl' />
 
       <GridBackground />
-      <BackgroundBeams />
 
       <div className='absolute inset-0 overflow-hidden'>
         <ElegantShape
