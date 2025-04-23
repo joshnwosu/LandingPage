@@ -76,13 +76,7 @@ function ElegantShape({
   );
 }
 
-function Hero({
-  badge = 'Ai Powered',
-  title = 'The Best Search Engine for',
-}: {
-  badge?: string;
-  title?: string;
-}) {
+function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
