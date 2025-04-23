@@ -48,7 +48,7 @@ export default function ForgotPasswordPage() {
           </h1>
 
           <p className='text-md leading-relaxed tracking-tight text-muted-foreground font-sans max-w-xl py-4'>
-            No worries, we'll send you resent instructions.
+            {`No worries, we'll send you resent instructions.`}
           </p>
         </motion.div>
       </div>
