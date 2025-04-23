@@ -7,6 +7,8 @@ import { MorphingText } from '../shared/morphing-text';
 import { MORPHTEXT } from '@/data/morph-text';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import { GridBackground } from '../shared/grid-background';
+import { BackgroundBeams } from '../shared/background-beams';
 
 function ElegantShape({
   className,
@@ -98,6 +100,9 @@ function Hero({
     <div className='relative min-h-screen w-full flex items-center justify-center overflow-hidden'>
       <div className='absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl' />
 
+      <GridBackground />
+      <BackgroundBeams />
+
       <div className='absolute inset-0 overflow-hidden'>
         <ElegantShape
           delay={0.3}
@@ -155,7 +160,7 @@ function Hero({
             className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border mb-8 md:mb-12'
           >
             <Circle className='h-4 w-4 fill-green-500/80' />
-            <span className='text-lg tracking-wide'>{badge}</span>
+            <span className='text-md tracking-wide'>{badge}</span>
           </motion.div>
 
           <motion.div
@@ -164,12 +169,16 @@ function Hero({
             initial='hidden'
             animate='visible'
           >
-            <h1 className='text-3xl md:text-5xl lg:text-7xl mb-6 md:mb-8 tracking-tight font-sans text-nowrap text-center'>
-              <span className=''>{title}</span>
-              <br />
+            <h2 className='text-5xl md:text-7xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto  bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
+              <span>
+                The Ultimate
+                <br /> Search Engine for
+              </span>
+            </h2>
 
+            <h2 className='text-5xl md:text-7xl mb-6 md:mb-8 tracking-tight font-sans text-center max-w-xl mx-auto'>
               <MorphingText texts={MORPHTEXT} className='my-2' />
-            </h1>
+            </h2>
           </motion.div>
 
           <motion.div
