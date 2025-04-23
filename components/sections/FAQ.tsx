@@ -1,9 +1,15 @@
+'use client';
+
+import * as React from 'react';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
 
 const items = [
   {
@@ -24,33 +30,68 @@ const items = [
 ];
 
 export default function FAQ() {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
+  // Animation variants
+  const headingVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: 'easeOut' },
+    },
+  };
+
+  const accordionItemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: 'easeOut', delay: 0.2 + index * 0.2 },
+    }),
+  };
+
   return (
-    <div className='relative max-w-full mx-auto'>
+    <motion.div ref={ref} className='relative max-w-full mx-auto'>
       <div className='space-y-4 max-w-[700px] mx-auto py-10 md:py-28'>
-        <h2 className='text-3xl md:text-7xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)] text-center'>
+        <motion.h2
+          variants={headingVariants}
+          initial='hidden'
+          animate={controls}
+          className='text-3xl md:text-7xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)] text-center'
+        >
           Have Questions?
           <br />
           TalentTrace Has Answers
-        </h2>
+        </motion.h2>
         <Accordion type='single' collapsible className='mt-8'>
           {items.map((item, index) => (
-            <AccordionItem
-              value={index.toString()}
+            <motion.div
               key={index.toString()}
-              className='py-2'
+              custom={index}
+              variants={accordionItemVariants}
+              initial='hidden'
+              animate={controls}
             >
-              <AccordionTrigger className='py-4 text-lg leading-6 hover:no-underline font-light'>
-                <span className='flex items-center gap-3'>
-                  <span>{item.title}</span>
-                </span>
-              </AccordionTrigger>
-              <AccordionContent className='py-4 text-muted-foreground text-lg'>
-                {item.content}
-              </AccordionContent>
-            </AccordionItem>
+              <AccordionItem value={index.toString()} className='py-2'>
+                <AccordionTrigger className='py-4 text-lg leading-6 hover:no-underline font-light'>
+                  <span className='flex items-center gap-3'>{item.title}</span>
+                </AccordionTrigger>
+                <AccordionContent className='py-4 text-muted-foreground text-lg'>
+                  {item.content}
+                </AccordionContent>
+              </AccordionItem>
+            </motion.div>
           ))}
         </Accordion>
       </div>
-    </div>
+    </motion.div>
   );
 }

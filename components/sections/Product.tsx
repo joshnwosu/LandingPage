@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
 interface ProductProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   subtitle?: {
-    regular: string;
-    gradient: string;
+    regular?: string;
+    gradient?: string;
   };
   description?: string;
   ctaText?: string;
@@ -27,8 +30,8 @@ const RetroGrid = ({
   angle = 65,
   cellSize = 60,
   opacity = 0.5,
-  lightLineColor = 'gray',
-  darkLineColor = 'gray',
+  lightLineColor = '#808080',
+  darkLineColor = '#808080',
 }) => {
   const gridStyles = {
     '--grid-angle': `${angle}deg`,
@@ -42,7 +45,7 @@ const RetroGrid = ({
     <div
       className={cn(
         'pointer-events-none absolute size-full overflow-hidden [perspective:200px]',
-        `opacity-[var(--opacity)]`
+        'opacity-[var(--opacity)]'
       )}
       style={gridStyles}
     >
@@ -54,48 +57,123 @@ const RetroGrid = ({
   );
 };
 
+// Animation variants for the image
+const cardVariants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: 'easeOut', delay: 0.2 },
+  },
+};
+
+// Animation variants for the h2 text
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
 const Product = React.forwardRef<HTMLDivElement, ProductProps>(
   (
     {
       className,
-      subtitle = {},
-      ctaText,
+      subtitle = { regular: '', gradient: '' },
+      ctaText = 'Get Started',
       ctaHref,
-      bottomImage = {},
+      bottomImage,
       gridOptions,
       ...props
     },
     ref
   ) => {
+    // Controls for h2 text
+    const textControls = useAnimation();
+    const [textRef, textInView] = useInView({
+      threshold: 0.5,
+      triggerOnce: true,
+    });
+
+    // Controls for bottomImage
+    const imageControls = useAnimation();
+    const [imageRef, imageInView] = useInView({
+      threshold: 0.2,
+      triggerOnce: true,
+    });
+
+    React.useEffect(() => {
+      if (textInView) {
+        textControls.start('visible');
+      }
+    }, [textControls, textInView]);
+
+    React.useEffect(() => {
+      if (imageInView) {
+        imageControls.start('visible');
+      }
+    }, [imageControls, imageInView]);
+
     return (
       <div className={cn('relative', className)} ref={ref} {...props}>
-        <div className='relative max-w-full mx-auto z-1'>
+        <div className='relative max-w-full mx-auto z-10'>
           <RetroGrid {...gridOptions} />
-          <div className='max-w-screen-xl z-10 mx-auto px-4 py-18 md:py-30 gap-12 md:px-8'>
-            <div className='space-y-5 max-w-6xl leading-0 lg:leading-5 mx-auto text-center'>
-              <h2 className='text-3xl md:text-7xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto  bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
-                {subtitle.regular} <br />
-                <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200'>
-                  {subtitle.gradient}
+          <div className='max-w-screen-xl mx-auto px-4 py-16 md:py-24 gap-12 md:px-8'>
+            <motion.div
+              ref={textRef}
+              variants={textVariants}
+              initial='hidden'
+              animate={textControls}
+              className='space-y-5 max-w-6xl mx-auto text-center'
+            >
+              <h2
+                className={cn(
+                  'text-3xl md:text-7xl tracking-tighter font-geist bg-clip-text text-transparent',
+                  'bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)]',
+                  'dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'
+                )}
+              >
+                {subtitle.regular || 'Welcome to Our Platform'} <br />
+                <span
+                  className={cn(
+                    'text-transparent bg-clip-text bg-gradient-to-r',
+                    'from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200'
+                  )}
+                >
+                  {subtitle.gradient || 'Discover Talent'}
                 </span>
               </h2>
 
               <div className='items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0'>
-                <span className='relative inline-block overflow-hidden rounded-full p-[1.5px]'>
+                <span
+                  role='button'
+                  className='relative inline-block overflow-hidden rounded-full p-[1.5px]'
+                >
                   <span className='absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]' />
                   <div className='inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white dark:bg-gray-950 text-xs font-medium backdrop-blur-3xl'>
                     <Link
                       href={ctaHref}
-                      className='inline-flex rounded-full text-center group items-center w-full justify-center bg-gradient-to-tr from-zinc-300/20 via-purple-400/30 to-transparent dark:from-zinc-300/5 dark:via-purple-400/20 text-gray-900 dark:text-white border-input border-[1px] hover:bg-gradient-to-tr hover:from-zinc-300/30 hover:via-purple-400/40 hover:to-transparent dark:hover:from-zinc-300/10 dark:hover:via-purple-400/30 transition-all sm:w-auto py-4 px-10'
+                      className={cn(
+                        'inline-flex rounded-full text-center items-center w-full justify-center',
+                        'bg-gradient-to-tr from-zinc-300/20 via-purple-400/30 to-transparent',
+                        'dark:from-zinc-300/5 dark:via-purple-400/20 text-gray-900 dark:text-white',
+                        'border-input border-[1px] hover:bg-gradient-to-tr hover:from-zinc-300/30',
+                        'hover:via-purple-400/40 hover:to-transparent dark:hover:from-zinc-300/10',
+                        'dark:hover:via-purple-400/30 transition-all sm:w-auto py-4 px-10'
+                      )}
                     >
                       {ctaText}
                     </Link>
                   </div>
                 </span>
               </div>
-            </div>
+            </motion.div>
             {bottomImage && (
-              <div className='mt-12 md:mt-20 mx-10 relative z-10'>
+              <motion.div
+                ref={imageRef}
+                variants={cardVariants}
+                initial='hidden'
+                animate={imageControls}
+                className='mt-12 md:mt-20 mx-10 relative z-10'
+              >
                 <img
                   src={bottomImage.light}
                   className='w-full shadow-lg rounded-lg border border-gray-200 dark:hidden'
@@ -106,7 +184,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>(
                   className='hidden w-full shadow-lg rounded-lg border border-gray-800 dark:block'
                   alt='Dashboard preview'
                 />
-              </div>
+              </motion.div>
             )}
           </div>
         </div>
@@ -114,6 +192,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>(
     );
   }
 );
+
 Product.displayName = 'Product';
 
 export default Product;

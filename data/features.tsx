@@ -56,7 +56,7 @@ export const FEATURES3 = {
           'Analyze comprehensive data directly tied to your searches and uncover valuable insights instantly. Benefit from an integrated overview of your talent pool and confidently act on curated findings that drive you forward.',
         buttonText: 'Try for free',
         imageSrc:
-          'https://www.shadcnblocks.com/images/block/placeholder-dark-2.svg',
+          'https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg',
         imageAlt: 'placeholder',
       },
     },
@@ -70,7 +70,7 @@ export const FEATURES3 = {
           'Maximize candidate engagement with AI-powered email campaigns that reflect your unique voice. Personalize messaging at scale using templates and AI commands, ensuring a 40% increase in response rates.',
         buttonText: 'Try for free',
         imageSrc:
-          'https://www.shadcnblocks.com/images/block/placeholder-dark-3.svg',
+          'https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg',
         imageAlt: 'placeholder',
       },
     },
