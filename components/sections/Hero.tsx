@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Circle, MoveRight, PhoneCall } from 'lucide-react';
+import { Circle, MoveRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { MorphingText } from '../shared/morphing-text';
 import { MORPHTEXT } from '@/data/morph-text';
@@ -194,13 +194,13 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
               initial='hidden'
               animate='visible'
             >
-              <Link href='/waitlist'>
+              <Link href='/signup'>
                 <Button
                   size='lg'
                   className='gap-4 cursor-pointer font-sans'
                   variant='outline'
                 >
-                  Jump on a call <PhoneCall className='w-4 h-4' />
+                  Get Started
                 </Button>
               </Link>
             </motion.div>
