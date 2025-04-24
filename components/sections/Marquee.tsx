@@ -73,7 +73,7 @@ function MarqueeSection() {
           {arr.map((Logo, index) => (
             <MarqueeItem
               key={index}
-              className='relative h-full w-fit mx-[3rem] flex items-center justify-start grayscale hover:grayscale-0 transition-all duration-300'
+              className='relative h-full w-fit mx-[3rem] flex items-center justify-start grayscale hover:grayscale-0 transition-all duration-300 opacity-25 hover:opacity-100'
             >
               <Logo />
             </MarqueeItem>
