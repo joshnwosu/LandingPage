@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Sourzer',
+  title: 'Sourzer: The Ultimate Search Engine for Talent sourcing & Recuiter',
   description: 'The Ultimate Talent Management Platform',
 };
 
