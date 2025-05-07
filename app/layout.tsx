@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'TalentTrace',
+  title: 'Sourzer',
   description: 'The Ultimate Talent Management Platform',
 };
 

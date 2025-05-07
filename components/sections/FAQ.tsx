@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 
 const items = [
   {
-    title: 'Is TalentTrace Free?',
+    title: 'Is Sourzer Free?',
     content:
       "Yes, you can try it for free. You won't get access to the latest models and you won't be able to see the entire response on the free version",
   },
@@ -25,7 +25,7 @@ const items = [
   {
     title: 'Do you have customer support?',
     content:
-      'Yes, we provide customer support 24/7 through our email help@talenttrace.com with any questions or concerns.',
+      'Yes, we provide customer support 24/7 through our email help@sourzer.co with any questions or concerns.',
   },
 ];
 
@@ -69,7 +69,7 @@ export default function FAQ() {
         >
           Have Questions?
           <br />
-          TalentTrace Has Answers
+          Sourzer Has Answers
         </motion.h2>
         <Accordion type='single' collapsible className='mt-8'>
           {items.map((item, index) => (

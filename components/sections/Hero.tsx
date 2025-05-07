@@ -180,7 +180,7 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
             animate='visible'
           >
             <p className='text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground text-center mb-8 font-sans max-w-xl mx-auto px-4'>
-              Sourcing candidates just got easier with TalentTrace. Quickly
+              Sourcing candidates just got easier with Sourzer. Quickly
               recruit great talent for new job opportunities.
             </p>
           </motion.div>

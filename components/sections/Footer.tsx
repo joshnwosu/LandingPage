@@ -17,7 +17,7 @@ export default function Footer() {
         <div className='grid gap-12 md:grid-cols-2 lg:grid-cols-4'>
           <div className='relative'>
             <h2 className='mb-4 text-2xl font-light tracking-tight'>
-              TalentTrace
+            Sourzer
             </h2>
             <p className='mb-6 text-muted-foreground'>
               Never miss top talents again!

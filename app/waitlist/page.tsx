@@ -304,7 +304,7 @@ export default function Waitlist() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="We've added you to our waiting list!"
-        message="We'll let you know when TalentTrace is ready."
+        message="We'll let you know when Sourzer is ready."
         buttonText='Got it!'
       />
     </div>
