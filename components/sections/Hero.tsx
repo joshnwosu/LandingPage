@@ -192,7 +192,8 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
               initial='hidden'
               animate='visible'
             >
-              <Link href='/signup'>
+              <Link href='/waitlist'> 
+              {/* signup */}
                 <Button
                   size='lg'
                   className='gap-4 cursor-pointer font-sans'

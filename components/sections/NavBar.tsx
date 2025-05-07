@@ -134,7 +134,8 @@ export function NavBar({ items, className }: NavBarProps) {
         })}
 
         <div className='hidden md:flex flex-row gap-3'>
-          <Link href='/signup'>
+          <Link href='/waitlist'>
+          {/* signup */}
             <Button
               size='lg'
               className='gap-4 cursor-pointer font-sans rounded-full'
