@@ -181,7 +181,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>(
                 />
                 <img
                   src={bottomImage.dark}
-                  className='hidden w-full shadow-lg rounded-lg border border-gray-800 dark:block'
+                  className='hidden w-full shadow-lg rounded-lg dark:block'
                   alt='Dashboard preview'
                 />
               </motion.div>

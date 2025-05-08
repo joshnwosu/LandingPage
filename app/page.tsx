@@ -33,8 +33,8 @@ export default function Home() {
             ctaText='Book a Demo'
             ctaHref='/waitlist'
             bottomImage={{
-              light: 'https://www.launchuicomponents.com/app-light.png',
-              dark: 'https://www.launchuicomponents.com/app-dark.png',
+              light: '/screenshots/listing-light.png',
+              dark: '/screenshots/listing-dark.png',
             }}
             gridOptions={{
               angle: 65,
