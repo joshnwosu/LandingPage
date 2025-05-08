@@ -249,7 +249,7 @@ export default function Waitlist() {
                                 placeholder='Phone number'
                                 className='h-12'
                                 {...field}
-                                defaultCountry='US'
+                                defaultCountry='NG'
                                 onChange={(value) => {
                                   field.onChange(value); // Update form state
                                 }}
