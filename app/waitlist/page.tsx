@@ -124,7 +124,8 @@ export default function Waitlist() {
 
       // Make API request
       const response = await fetch(
-        'https://api-sandbox.getfless.com/api/join_talent_place_waitinglist',
+        // 'https://api-sandbox.getfless.com/api/join_talent_place_waitinglist',
+        'https://api-production.billpass.app/',
         {
           method: 'POST',
           headers: {
@@ -173,7 +174,7 @@ export default function Waitlist() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1, duration: 0.3 }}
             >
-              <h1 className='text-5xl md:text-7xl tracking-tighter font-sans bg-clip-text text-transparent mx-auto  bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
+              <h1 className='text-3xl md:text-6xl tracking-tighter font-sans bg-clip-text text-transparent mx-auto  bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
                 <span>Join the waitlist for the </span>
                 <br />
                 <span
