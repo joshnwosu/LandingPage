@@ -124,8 +124,8 @@ export default function Waitlist() {
 
       // Make API request
       const response = await fetch(
-        // 'https://api-sandbox.getfless.com/api/join_talent_place_waitinglist',
-        'https://api-production.billpass.app/',
+        //'https://api-sandbox.getfless.com/api/join_talent_place_waitinglist',
+        'https://api-production.billpass.app/api/join_talent_place_waitinglist',
         {
           method: 'POST',
           headers: {
