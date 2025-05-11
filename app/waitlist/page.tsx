@@ -152,17 +152,17 @@ export default function Waitlist() {
   }
 
   return (
-    <div className='relative min-h-screen font-sans'>
+    <div className='relative min-h-screen font-sans px-8'>
       <GridBackground />
 
       <div className='relative z-10 flex items-center justify-center min-h-screen'>
-        <div className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col items-center justify-center space-y-8'>
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.3 }}
           >
-            <div className='flex justify-center items-center mb-10 border-border border-8 w-20 h-20 md:w-30 md:h-30 rounded-full'>
+            <div className='flex justify-center items-center border-border border-8 w-20 h-20 md:w-30 md:h-30 rounded-full'>
               <div className='flex justify-center items-center border border-border w-10 h-10 md:w-20 md:h-20 rounded-full'>
                 <MailCheck className='h-5 w-5 md:w-10 md:h-10 text-neutral-500 dark:text-orange-200' />
               </div>
@@ -185,10 +185,15 @@ export default function Waitlist() {
                   Best Hire!
                 </span>
               </h1>
+
+              <p className='text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground text-center font-sans max-w-xl mx-auto mt-4 px-8'>
+                Sourzer allows you to source talents in minutes. <br />
+                Join our exclusive beta testing.
+              </p>
             </motion.div>
           </div>
 
-          <div className='w-full max-w-[600px] mx-auto p-8 space-y-12'>
+          <div className='w-full max-w-[600px] mx-auto space-y-12'>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -249,7 +254,7 @@ export default function Waitlist() {
                                 placeholder='Phone number'
                                 className='h-12'
                                 {...field}
-                                defaultCountry='US'
+                                defaultCountry='NG'
                                 onChange={(value) => {
                                   field.onChange(value); // Update form state
                                 }}
