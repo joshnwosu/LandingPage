@@ -84,7 +84,6 @@ export default function Feature() {
               experience
             </motion.p>
           </motion.div>
-
           <FeaturesSectionWithHoverEffects />
         </div>
       </div>
