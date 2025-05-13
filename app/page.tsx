@@ -21,7 +21,7 @@ export default function Home() {
         <Hero />
       </section>
       <main className='flex-grow px-8'>
-        <MarqueeSection />
+        {/* <MarqueeSection /> */}
         <section id='products'>
           <Product
             title='Welcome to Our Platform'
