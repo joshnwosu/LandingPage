@@ -9,6 +9,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -57,10 +58,9 @@ export default function Footer() {
           <div>
             <h3 className='mb-4 text-lg font-semibold'>Contact Us</h3>
             <address className='space-y-2 text-sm not-italic'>
-              
-              <a href='/waitlist' className='transition-colors hover:text-primary'>
-              <p>Book A Demo</p>
-            </a>
+            <Link href='/waitlist'>
+            <p>Book A Demo</p>
+          </Link>
               {/* <p>Lekki phase 1, Nigeria</p>
               <p>Phone: (234) 8085-732-766</p> */}
               <p>Email: tobi@sourzer.co</p>
