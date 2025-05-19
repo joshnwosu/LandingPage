@@ -8,6 +8,9 @@ import { MORPHTEXT } from '@/data/morph-text';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import { GridBackground } from '../shared/grid-background';
+import { LexicalInput } from '../lexical-input';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 function ElegantShape({
   className,
@@ -76,6 +79,9 @@ function ElegantShape({
 }
 
 function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
+  const router = useRouter();
+  const [input, setInput] = useState('');
+
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
@@ -87,6 +93,11 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
         ease: [0.25, 0.4, 0.25, 1],
       },
     }),
+  };
+
+  const handleSend = () => {
+    console.log('Sending...');
+    router.push('/waitlist');
   };
 
   return (
@@ -180,8 +191,8 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
             animate='visible'
           >
             <p className='text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground text-center mb-8 font-sans max-w-xl mx-auto px-4'>
-              Sourcing candidates just got easier with Sourzer. Quickly
-              recruit great talent for new job opportunities.
+              Sourcing candidates just got easier with Sourzer. Quickly recruit
+              great talent for new job opportunities.
             </p>
           </motion.div>
 
@@ -192,8 +203,8 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
               initial='hidden'
               animate='visible'
             >
-              <Link href='/waitlist'> 
-              {/* signup */}
+              <Link href='/waitlist'>
+                {/* signup */}
                 <Button
                   size='lg'
                   className='gap-4 cursor-pointer font-sans'
@@ -216,6 +227,21 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
               </Link>
             </motion.div>
           </div>
+          <motion.div
+            custom={5}
+            variants={fadeUpVariants}
+            initial='hidden'
+            animate='visible'
+            className='w-full'
+          >
+            <LexicalInput
+              placeholder='Who are you looking for? Ask Sourzer!'
+              content={input}
+              onInputChange={setInput}
+              onSend={handleSend}
+              className='mt-12 text-left'
+            />
+          </motion.div>
         </div>
       </div>
 
