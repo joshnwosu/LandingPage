@@ -124,6 +124,9 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>(
               animate={textControls}
               className='space-y-5 max-w-6xl mx-auto text-center'
             >
+              <p className='text-sm md:text-xl leading-relaxed tracking-tight text-muted-foreground text-center mb-8 font-sans max-w-xl mx-auto px-4'>
+                Want to learn more?
+              </p>
               <h2
                 className={cn(
                   'text-3xl md:text-7xl tracking-tighter font-geist bg-clip-text text-transparent',
@@ -131,18 +134,18 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>(
                   'dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'
                 )}
               >
-                {subtitle.regular || 'Welcome to Our Platform'} <br />
-                <span
+                {subtitle.regular || 'Try risk free. Ask us how.'} <br />
+                {/* <span
                   className={cn(
                     'text-transparent bg-clip-text bg-gradient-to-r',
                     'from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200'
                   )}
                 >
-                  {subtitle.gradient || 'Discover Talent'}
-                </span>
+                  {subtitle.gradient || 'Try risk free. Ask us how.'}
+                </span> */}
               </h2>
 
-              <div className='items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0'>
+              <div className='items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0 mt-10'>
                 <span
                   role='button'
                   className='relative inline-block overflow-hidden rounded-full p-[1.5px]'

@@ -25,10 +25,12 @@ export default function Home() {
         <section id='products'>
           <Product
             title='Welcome to Our Platform'
-            subtitle={{
-              regular: 'What we solve for, in one sentence.',
-              gradient: 'Efficiently identifying best-fit candidates.',
-            }}
+            subtitle={
+              {
+                // regular: 'What we solve for, in one sentence.',
+                // gradient: 'Efficiently identifying best-fit candidates.',
+              }
+            }
             description='Transform your ideas into reality with our comprehensive suite of development tools and resources.'
             ctaText='Book a Demo'
             ctaHref='/waitlist'
