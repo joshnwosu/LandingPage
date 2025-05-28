@@ -35,11 +35,11 @@ export const FEATURES3 = {
     {
       value: 'tab-1',
       icon: <Zap className='h-auto w-4 shrink-0' />,
-      label: 'Search (PeopleGPT)',
+      label: 'Search',
       content: {
         title: 'Discover talent through AI-powered search',
         description:
-          'Elevate your recruitment strategy with PeopleGPT, the AI-powered search platform that transforms how you find talent. Streamline your search with semantic natural language queries – no need for complicated boolean strings.',
+          'Elevate your recruitment strategy with Sourzer, the AI-powered search platform that transforms how you find talent. Streamline your search with semantic natural language queries – no need for complicated boolean strings.',
         buttonText: 'Try for free',
         imageSrc:
           'https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg',

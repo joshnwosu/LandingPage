@@ -12,6 +12,7 @@ import { NAVITEMS } from '@/data/nav-items';
 import { PAYMENT_FREQUENCIES, TIERS } from '@/data/pricing';
 import Feature from '@/components/sections/Feature';
 import FAQ from '@/components/sections/FAQ';
+import CandidateSourcingSection from '@/components/sections/Diagram';
 
 export default function Home() {
   return (
@@ -21,16 +22,11 @@ export default function Home() {
         <Hero />
       </section>
       <main className='flex-grow px-8'>
-        {/* <MarqueeSection /> */}
+        {false && <MarqueeSection />}
+        <CandidateSourcingSection />
         <section id='products'>
           <Product
             title='Welcome to Our Platform'
-            subtitle={
-              {
-                // regular: 'What we solve for, in one sentence.',
-                // gradient: 'Efficiently identifying best-fit candidates.',
-              }
-            }
             description='Transform your ideas into reality with our comprehensive suite of development tools and resources.'
             ctaText='Book a Demo'
             ctaHref='/waitlist'
@@ -47,6 +43,7 @@ export default function Home() {
             }}
           />
         </section>
+
         <section id='features'>
           <Feature />
         </section>
