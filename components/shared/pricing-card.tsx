@@ -182,7 +182,7 @@ export function PricingCard({
                   )}
                 >
                   <BadgeCheck className='h-4 w-4' />
-                  {feature}
+                  <p className='flex-1'>{feature}</p>
                 </li>
               ))}
             </motion.ul>
