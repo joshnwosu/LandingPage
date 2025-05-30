@@ -13,6 +13,7 @@ import { PAYMENT_FREQUENCIES, TIERS } from '@/data/pricing';
 import Feature from '@/components/sections/Feature';
 import FAQ from '@/components/sections/FAQ';
 import CandidateSourcingSection from '@/components/sections/Diagram';
+import Blog from '@/components/sections/Blog';
 
 export default function Home() {
   return (
@@ -60,6 +61,16 @@ export default function Home() {
         </section>
         <section id='faq'>
           <FAQ />
+        </section>
+
+        <section id='blog'>
+          <Blog
+            heading='Blog Posts'
+            description='Stay updated with the latest trends and insights in the recruitment industry. Our blog features articles, tips, and resources to help you navigate the world of hiring.'
+            buttonText='View all articles'
+            buttonUrl='/blog'
+            tagline='Latest Updates'
+          />
         </section>
         <Footer />
       </main>

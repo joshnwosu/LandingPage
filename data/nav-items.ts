@@ -5,5 +5,5 @@ export const NAVITEMS = [
   // { name: 'Products', url: '#products', icon: User },
   { name: 'Features', url: '#features', icon: Blocks },
   { name: 'Pricing', url: '#pricing', icon: CreditCard },
-  { name: 'Contact us', url: '#contact', icon: FileText },
+  { name: 'Blog', url: '#blog', icon: FileText },
 ];
