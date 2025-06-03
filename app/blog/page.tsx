@@ -4,16 +4,12 @@ import { fetchBlogs } from '@/lib/api';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 
-interface PageProps {
-  searchParams: { page?: string; perPage?: string };
-}
-
-export default async function BlogPage({ searchParams }: PageProps) {
-  const page = Number(searchParams.page) || 1;
-  const perPage = Number(searchParams.perPage) || 10;
+export default async function BlogPage() {
+  const page = 1;
+  const perPage = 10;
 
   const { data } = await fetchBlogs(page, perPage);
-  const { blogs, total, lastPage } = data;
+  const { blogs } = data;
 
   if (!blogs.length) {
     return (

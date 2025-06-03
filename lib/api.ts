@@ -100,8 +100,8 @@ export async function fetchBlogs(
   return response.json();
 }
 
-export async function fetchBlog(id: string): Promise<BlogResponse> {
-  const response = await fetch(`${BASE_URL}/blogs/${id}`);
+export async function fetchBlog(slug: string): Promise<BlogResponse> {
+  const response = await fetch(`${BASE_URL}/blogs/${slug}`);
 
   if (!response.ok) {
     throw new Error(`Failed to fetch blog: ${response.statusText}`);

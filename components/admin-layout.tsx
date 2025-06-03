@@ -19,7 +19,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   return (
     <div className='min-h-screen'>
       <header className='shadow-sm border-b'>
-        <div className='max-w-7xl mx-auto m:px-6'>
+        <div className='max-w-7xl mx-auto px-4'>
           <div className='flex justify-between items-center h-16'>
             <div className='flex items-center'>
               {/* <PenTool className='h-8 w-8 text-blue-600' /> */}
