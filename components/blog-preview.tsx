@@ -25,7 +25,7 @@ export default function BlogPreview({ slug }: BlogPreviewProps) {
   }, []);
 
   if (!post) {
-    return <div>No Post!</div>;
+    return;
   }
 
   return (
