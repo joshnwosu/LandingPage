@@ -1,0 +1,23 @@
+.editor {
+  color: white;
+}
+
+.editor :global(.ProseMirror) {
+  min-height: 200px;
+}
+
+.editor :global(.ProseMirror p),
+.editor :global(.ProseMirror strong) {
+  color: white;
+}
+
+.editor :global(.ProseMirror h1),
+.editor :global(.ProseMirror h2),
+.editor :global(.ProseMirror h3) {
+  color: white;
+}
+
+.editor :global(.ProseMirror ul),
+.editor :global(.ProseMirror ol) {
+  color: white;
+}
