@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { AdminLayout } from '@/components/admin-layout';
 import { AuthGuard } from '@/components/auth-guard';
 import { BlogForm } from '@/components/blog-form';
@@ -12,6 +12,7 @@ import { Plus, List, Pencil } from 'lucide-react';
 
 export default function BlogsPage() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const editId = searchParams.get('edit');
   const [activeTab, setActiveTab] = useState(editId ? 'edit' : 'list');
 
@@ -20,6 +21,14 @@ export default function BlogsPage() {
       setActiveTab('edit');
     }
   }, [editId]);
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    if (value !== 'edit') {
+      // Remove the edit parameter from the URL
+      router.push('/admin/blogs');
+    }
+  };
 
   return (
     <AuthGuard>
@@ -31,7 +40,7 @@ export default function BlogsPage() {
 
           <Tabs
             value={activeTab}
-            onValueChange={setActiveTab}
+            onValueChange={handleTabChange}
             className='w-full'
           >
             <TabsList className='grid w-full grid-cols-3 max-w-md'>

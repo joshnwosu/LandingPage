@@ -19,3 +19,7 @@ export const blogSchema = z.object({
 
 export type LoginFormData = z.infer<typeof loginSchema>;
 export type BlogFormData = z.infer<typeof blogSchema>;
+
+export type CreateBlogData = Omit<BlogFormData, 'blogCategoryId'> & {
+  blogCategoryId?: number;
+};

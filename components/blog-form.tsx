@@ -197,9 +197,10 @@ export function BlogForm({ blogId }: BlogFormProps) {
 
     try {
       if (blogId) {
-        await updateBlog(blogId, data);
+        const { blogCategoryId, ...updateData } = data;
+        await updateBlog(blogId, updateData);
         toast.success('Blog post updated successfully!');
-        // console.log('data: ', data);
+        console.log('data: ', data);
       } else {
         await createBlog(data);
         toast.success('Blog post created successfully!');
@@ -263,7 +264,7 @@ export function BlogForm({ blogId }: BlogFormProps) {
                     <Select
                       onValueChange={(value) => field.onChange(parseInt(value))}
                       value={field.value?.toString()}
-                      disabled={isLoadingCategories}
+                      disabled={isLoadingCategories || blogId != undefined}
                     >
                       <SelectTrigger>
                         <SelectValue
@@ -286,12 +287,14 @@ export function BlogForm({ blogId }: BlogFormProps) {
                       </SelectContent>
                     </Select>
 
-                    <AddCategoryDialog
-                      onCategoryAdded={() => {
-                        setIsLoadingCategories(true);
-                        loadCategories();
-                      }}
-                    />
+                    {!blogId && (
+                      <AddCategoryDialog
+                        onCategoryAdded={() => {
+                          setIsLoadingCategories(true);
+                          loadCategories();
+                        }}
+                      />
+                    )}
                   </div>
                 )}
               />

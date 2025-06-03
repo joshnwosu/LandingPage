@@ -110,10 +110,7 @@ export async function fetchBlog(id: string): Promise<BlogResponse> {
   return response.json();
 }
 
-export async function updateBlog(
-  id: string,
-  data: Partial<Omit<Blog, 'id' | 'created_at'>>
-): Promise<Blog> {
+export async function updateBlog(id: string, data: any): Promise<Blog> {
   const response = await fetch(`${BASE_URL}/blogs/${id}`, {
     method: 'PUT',
     headers: {
