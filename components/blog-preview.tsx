@@ -5,7 +5,9 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ArrowLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface BlogPreviewProps {
   slug: string;
@@ -13,6 +15,7 @@ interface BlogPreviewProps {
 
 export default function BlogPreview({ slug }: BlogPreviewProps) {
   const [post, setPost] = useState<Blog>();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -30,12 +33,14 @@ export default function BlogPreview({ slug }: BlogPreviewProps) {
 
   return (
     <article className='container mx-auto px-4 py-12 max-w-4xl font-sans'>
-      <Link href='/blog' className='block mb-12'>
-        <Button variant='ghost' className='group'>
-          <ArrowLeft className='mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1' />
-          Back to Blog
-        </Button>
-      </Link>
+      <Button
+        variant='ghost'
+        className='group mb-12'
+        onClick={() => router.back()}
+      >
+        <ArrowLeft className='mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1' />
+        Back
+      </Button>
 
       <header className='mb-12'>
         <h1 className='text-4xl font-bold mb-6 leading-tight lg:text-5xl'>
@@ -43,13 +48,13 @@ export default function BlogPreview({ slug }: BlogPreviewProps) {
         </h1>
         <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-muted-foreground'>
           <div className='flex items-center gap-3'>
-            {post?.created_by_profile_image && (
-              <img
+            <Avatar className='h-10 w-10'>
+              <AvatarImage
                 src={post.created_by_profile_image}
                 alt={post.created_by}
-                className='w-10 h-10 rounded-full'
               />
-            )}
+              <AvatarFallback>{post.created_by.charAt(0)}</AvatarFallback>
+            </Avatar>
             <div>
               <p className='font-medium'>{post.created_by}</p>
               <p className='text-sm text-muted-foreground'>

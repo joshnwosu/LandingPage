@@ -46,6 +46,7 @@ import {
   Redo,
   Palette,
 } from 'lucide-react';
+import { forwardRef, useImperativeHandle } from 'react';
 
 interface RichTextEditorProps {
   value: string;
@@ -53,11 +54,14 @@ interface RichTextEditorProps {
   placeholder?: string;
 }
 
-const RichTextEditor = ({
-  value,
-  onChange,
-  placeholder = 'Start writing...',
-}: RichTextEditorProps) => {
+export interface RichTextEditorRef {
+  clearContent: () => void;
+}
+
+export const RichTextEditor = forwardRef<
+  RichTextEditorRef,
+  RichTextEditorProps
+>(({ value, onChange, placeholder = 'Start writing...' }, ref) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -98,6 +102,12 @@ const RichTextEditor = ({
     },
     immediatelyRender: false,
   });
+
+  useImperativeHandle(ref, () => ({
+    clearContent: () => {
+      editor?.commands.clearContent();
+    },
+  }));
 
   const setLink = () => {
     const previousUrl = editor?.getAttributes('link').href;
@@ -528,6 +538,6 @@ const RichTextEditor = ({
       </div>
     </div>
   );
-};
+});
 
-export default RichTextEditor;
+RichTextEditor.displayName = 'RichTextEditor';
