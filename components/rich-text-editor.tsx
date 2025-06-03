@@ -5,6 +5,8 @@ import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align';
 import Placeholder from '@tiptap/extension-placeholder';
+import TextStyle from '@tiptap/extension-text-style';
+import Color from '@tiptap/extension-color';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -19,6 +21,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import styles from './rich-text-editor.module.css';
 import {
   Bold,
@@ -37,6 +44,7 @@ import {
   Heading,
   Undo,
   Redo,
+  Palette,
 } from 'lucide-react';
 
 interface RichTextEditorProps {
@@ -76,6 +84,8 @@ const RichTextEditor = ({
       Placeholder.configure({
         placeholder,
       }),
+      TextStyle,
+      Color,
     ],
     content: value,
     editorProps: {
@@ -451,6 +461,64 @@ const RichTextEditor = ({
             </TooltipTrigger>
             <TooltipContent>Redo</TooltipContent>
           </Tooltip>
+
+          <div className='w-px h-6 bg-border mx-1' />
+
+          {/* Color Picker */}
+          <Popover>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <PopoverTrigger asChild>
+                  <Button
+                    type='button'
+                    variant='ghost'
+                    size='sm'
+                    className='h-8 w-8 p-0'
+                  >
+                    <Palette className='h-4 w-4' />
+                  </Button>
+                </PopoverTrigger>
+              </TooltipTrigger>
+              <TooltipContent>Text Color</TooltipContent>
+            </Tooltip>
+            <PopoverContent className='w-64'>
+              <div className='grid grid-cols-8 gap-1'>
+                {[
+                  '#000000',
+                  '#343434',
+                  '#666666',
+                  '#999999',
+                  '#FF0000',
+                  '#FF8000',
+                  '#FFFF00',
+                  '#008000',
+                  '#0000FF',
+                  '#4B0082',
+                  '#9400D3',
+                  '#FF1493',
+                  '#A52A2A',
+                  '#800000',
+                  '#008080',
+                  '#000080',
+                ].map((color) => (
+                  <Button
+                    key={color}
+                    type='button'
+                    variant='ghost'
+                    className='w-6 h-6 p-0'
+                    onClick={() => {
+                      editor.chain().focus().setColor(color).run();
+                    }}
+                  >
+                    <div
+                      className='w-4 h-4 rounded-sm'
+                      style={{ backgroundColor: color }}
+                    />
+                  </Button>
+                ))}
+              </div>
+            </PopoverContent>
+          </Popover>
         </TooltipProvider>
       </div>
 

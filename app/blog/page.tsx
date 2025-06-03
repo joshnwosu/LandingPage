@@ -3,21 +3,18 @@ import { Card } from '@/components/ui/card';
 import { fetchBlogs } from '@/lib/api';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
-interface PageProps {
-  searchParams: { page?: string; perPage?: string };
-}
-
-export default async function BlogPage({ searchParams }: PageProps) {
-  const page = Number(searchParams.page) || 1;
-  const perPage = Number(searchParams.perPage) || 10;
+export default async function BlogPage() {
+  const page = 1;
+  const perPage = 10;
 
   const { data } = await fetchBlogs(page, perPage);
-  const { blogs, total, lastPage } = data;
+  const { blogs } = data;
 
   if (!blogs.length) {
     return (
-      <section className='py-32'>
+      <section className='py-32 font-sans'>
         <div className='container mx-auto flex flex-col items-center gap-8 text-center'>
           <div className='rounded-full bg-muted p-6'>
             <FileText className='size-12 text-muted-foreground' />
@@ -30,10 +27,10 @@ export default async function BlogPage({ searchParams }: PageProps) {
             </p>
           </div>
           <Button asChild variant='default' size='lg'>
-            <a href='/' className='inline-flex items-center gap-2'>
+            <Link href='/' className='inline-flex items-center gap-2'>
               <ArrowLeft className='size-4' />
               Back to Homepage
-            </a>
+            </Link>
           </Button>
         </div>
       </section>
@@ -41,7 +38,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
   }
 
   return (
-    <section className='py-32'>
+    <section className='py-32 font-sans'>
       <div className='container mx-auto flex flex-col items-center gap-16'>
         <div className='text-center'>
           <h2 className='mx-auto mb-6 text-3xl font-semibold text-pretty md:text-4xl lg:max-w-3xl'>
@@ -71,9 +68,12 @@ export default async function BlogPage({ searchParams }: PageProps) {
                     </div>
                   </div>
                   <h3 className='text-xl font-semibold md:text-2xl lg:text-3xl'>
-                    <a href={`/blog/${blog.slug}`} className='hover:underline'>
+                    <Link
+                      href={`/blog/${blog.slug}`}
+                      className='hover:underline'
+                    >
                       {blog.title}
-                    </a>
+                    </Link>
                   </h3>
                   <p className='mt-4 text-muted-foreground md:mt-5'>
                     {blog.summary}
@@ -108,17 +108,17 @@ export default async function BlogPage({ searchParams }: PageProps) {
                     </span>
                   </div>
                   <div className='mt-6 flex items-center space-x-2 md:mt-8'>
-                    <a
+                    <Link
                       href={`/blog/${blog.slug}`}
                       className='inline-flex items-center font-semibold hover:underline md:text-base'
                     >
                       <span>Read more</span>
                       <ArrowRight className='ml-2 size-4 transition-transform' />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className='order-first sm:order-last sm:col-span-5'>
-                  <a href={`/blog/${blog.slug}`} className='block'>
+                  <Link href={`/blog/${blog.slug}`} className='block'>
                     <div className='aspect-16/9 overflow-clip rounded-lg border border-border'>
                       <img
                         src={blog.image_url}
@@ -126,7 +126,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                         className='h-full w-full object-cover transition-opacity duration-200 fade-in hover:opacity-70'
                       />
                     </div>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Card>
