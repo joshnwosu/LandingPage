@@ -18,13 +18,13 @@ const Secure = () => {
         <div className='flex flex-wrap justify-center gap-4 mb-6'>
           {/* Non-clickable certification buttons */}
           <div className='px-6 py-2 bg-sidebar rounded-md text-muted-foreground font-medium text-sm'>
-            SOC II Compliant
+            CCPA Compliant
           </div>
           <div className='px-6 py-2 bg-sidebar rounded-md text-muted-foreground font-medium text-sm'>
             GDPR Compliant
           </div>
           <div className='px-6 py-2 bg-sidebar rounded-md text-muted-foreground font-medium text-sm'>
-            ISO 27001 Certification*
+            SOC 2 Compliant
           </div>
         </div>
 
