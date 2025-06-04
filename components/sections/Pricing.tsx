@@ -30,10 +30,22 @@ export default function Pricing({
   const [isNigerianUser, setIsNigerianUser] = useState(false);
 
   useEffect(() => {
-    // Detect if user is from Nigeria based on browser locale
-    const userLocale = navigator.language || (navigator as any).userLanguage;
-    const userCountry = new Intl.Locale(userLocale).region;
-    setIsNigerianUser(userCountry === 'NG');
+    const detectCountry = async () => {
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        console.log('Location data:', data);
+
+        const isNG = data.country_code === 'NG';
+        console.log('Is Nigerian user:', isNG);
+        setIsNigerianUser(isNG);
+      } catch (error) {
+        console.error('Error detecting country:', error);
+        setIsNigerianUser(false);
+      }
+    };
+
+    detectCountry();
   }, []);
 
   const formatPrice = (priceObj: Record<string, number | string>) => {
