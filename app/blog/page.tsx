@@ -1,11 +1,15 @@
+'use client';
+
 import { ArrowRight, FileText, ArrowLeft } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { fetchBlogs } from '@/lib/api';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default async function BlogPage() {
+  const router = useRouter();
   const page = 1;
   const perPage = 10;
 
@@ -38,19 +42,29 @@ export default async function BlogPage() {
   }
 
   return (
-    <section className='py-32 font-sans'>
-      <div className='container mx-auto flex flex-col items-center gap-16'>
+    <section className='font-sans pb-32'>
+      <div className='bg-sidebar/50 w-full py-12 mb-12'>
         <div className='text-center'>
+          <Button
+            variant='ghost'
+            className='group mb-12'
+            onClick={() => router.back()}
+          >
+            <ArrowLeft className='mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1' />
+            Back
+          </Button>
+
           <h2 className='mx-auto mb-6 text-3xl font-semibold text-pretty md:text-4xl lg:max-w-3xl'>
-            Latest Articles
+            Latest <span className='text-primary'>Articles</span>
           </h2>
-          <p className='mx-auto max-w-2xl text-muted-foreground md:text-lg'>
+          <p className='mx-auto max-w-xl text-muted-foreground md:text-lg'>
             Explore our collection of insightful articles covering various
             topics in technology, recruitment, and career development.
           </p>
         </div>
-
-        <div className='grid gap-y-10 sm:grid-cols-12 sm:gap-y-12 md:gap-y-16 lg:gap-y-20'>
+      </div>
+      <div className='container max-w-7xl mx-auto flex flex-col items-center gap-16 px-6 lg:px-8'>
+        <div className='grid gap-y-10 sm:grid-cols-12 md:gap-y-10'>
           {blogs.map((blog) => (
             <Card
               key={blog.id}
@@ -110,7 +124,7 @@ export default async function BlogPage() {
                   <div className='mt-6 flex items-center space-x-2 md:mt-8'>
                     <Link
                       href={`/blog/${blog.slug}`}
-                      className='inline-flex items-center font-semibold hover:underline md:text-base'
+                      className='inline-flex items-center font-semibold hover:underline md:text-sm'
                     >
                       <span>Read more</span>
                       <ArrowRight className='ml-2 size-4 transition-transform' />

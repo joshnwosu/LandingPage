@@ -49,20 +49,24 @@ const Blog = ({
 
   return (
     <section className='py-32'>
-      <div className='container mx-auto flex flex-col items-center gap-16 lg:px-16'>
+      <div className='container max-w-7xl mx-auto flex flex-col items-center gap-16 lg:px-16'>
         <div className='text-center'>
-          <Badge variant='secondary' className='mb-6'>
-            {tagline}
-          </Badge>
-          <h2 className='text-3xl md:text-7xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
+          {false && (
+            <Badge variant='secondary' className='mb-6'>
+              {tagline}
+            </Badge>
+          )}
+          <h2 className='text-3xl md:text-5xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
             {heading}
           </h2>
           {!isLoading && posts.length > 0 && (
             <>
-              <p className='my-8 text-muted-foreground md:text-base lg:max-w-2xl lg:text-md'>
-                {description}
-              </p>
-              <div>
+              {false && (
+                <p className='my-8 text-muted-foreground md:text-base lg:max-w-2xl lg:text-md'>
+                  {description}
+                </p>
+              )}
+              <div className='mt-8'>
                 <Button variant='link' className='w-full sm:w-auto' asChild>
                   <Link href={buttonUrl}>
                     {buttonText}
@@ -105,12 +109,14 @@ const Blog = ({
                     </Link>
                   </div>
                   <CardHeader>
-                    <h3 className='text-lg font-semibold hover:underline md:text-xl'>
+                    <h3 className='text-md font-semibold hover:underline md:text-md'>
                       <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                     </h3>
+                    <p className='text-muted-foreground mb-4 text-sm'>
+                      {post.summary}
+                    </p>
                   </CardHeader>
                   <CardContent>
-                    <p className='text-muted-foreground mb-4'>{post.summary}</p>
                     <div className='flex items-center gap-3'>
                       <Avatar className='h-8 w-8'>
                         <AvatarImage

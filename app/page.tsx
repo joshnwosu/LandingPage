@@ -14,6 +14,7 @@ import Feature from '@/components/sections/Feature';
 import FAQ from '@/components/sections/FAQ';
 import CandidateSourcingSection from '@/components/sections/Diagram';
 import Blog from '@/components/sections/Blog';
+import Secure from '@/components/sections/Secure';
 
 export default function Home() {
   return (
@@ -59,6 +60,7 @@ export default function Home() {
         <section id='contact'>
           <FeatureTab {...FEATURES3} />
         </section>
+
         <section id='faq'>
           <FAQ />
         </section>
@@ -71,6 +73,9 @@ export default function Home() {
             buttonUrl='/blog'
             tagline='Latest Updates'
           />
+        </section>
+        <section id='secure'>
+          <Secure />
         </section>
         <Footer />
       </main>
