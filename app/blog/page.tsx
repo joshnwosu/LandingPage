@@ -2,19 +2,48 @@
 
 import { ArrowRight, FileText, ArrowLeft } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-import { fetchBlogs } from '@/lib/api';
+import { fetchBlogs, type Blog } from '@/lib/api';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
-export default async function BlogPage() {
+interface BlogCategory {
+  name: string;
+}
+
+export default function BlogPage() {
   const router = useRouter();
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
   const page = 1;
   const perPage = 10;
 
-  const { data } = await fetchBlogs(page, perPage);
-  const { blogs } = data;
+  useEffect(() => {
+    const loadBlogs = async () => {
+      try {
+        const { data } = await fetchBlogs(page, perPage);
+        setBlogs(data.blogs);
+      } catch (error) {
+        console.error('Error loading blogs:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadBlogs();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className='py-32 font-sans'>
+        <div className='container mx-auto flex flex-col items-center gap-8 text-center'>
+          <p>Loading...</p>
+        </div>
+      </section>
+    );
+  }
 
   if (!blogs.length) {
     return (
