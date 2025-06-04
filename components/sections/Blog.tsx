@@ -1,7 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import Link from 'next/link';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -11,6 +10,7 @@ import {
   CardFooter,
   CardHeader,
 } from '@/components/ui/card';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { fetchBlogs, type Blog as BlogType } from '@/lib/api';
 import { Loader2 } from 'lucide-react';
 
@@ -31,14 +31,6 @@ const Blog = ({
 }: Blog7Props) => {
   const [posts, setPosts] = useState<BlogType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const controls = useAnimation();
-  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    }
-  }, [controls, inView]);
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -55,77 +47,36 @@ const Blog = ({
     loadPosts();
   }, []);
 
-  // Animation variants
-  const headingVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
-    },
-  };
-
-  const contentVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut', delay: 0.2 },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (index: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut', delay: 0.4 + index * 0.2 },
-    }),
-  };
-
   return (
     <section className='py-32'>
-      <motion.div
-        ref={ref}
-        className='container mx-auto flex flex-col items-center gap-16 lg:px-16'
-      >
-        <motion.div className='text-center'>
-          <Badge variant='secondary' className='mb-6'>
-            {tagline}
-          </Badge>
-          <motion.h2
-            variants={headingVariants}
-            initial='hidden'
-            animate={controls}
-            className='text-3xl md:text-7xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'
-          >
+      <div className='container max-w-7xl mx-auto flex flex-col items-center gap-16 lg:px-16'>
+        <div className='text-center'>
+          {false && (
+            <Badge variant='secondary' className='mb-6'>
+              {tagline}
+            </Badge>
+          )}
+          <h2 className='text-3xl md:text-5xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]'>
             {heading}
-          </motion.h2>
+          </h2>
           {!isLoading && posts.length > 0 && (
             <>
-              <motion.p
-                variants={contentVariants}
-                initial='hidden'
-                animate={controls}
-                className='my-8 text-muted-foreground md:text-base lg:max-w-2xl lg:text-md'
-              >
-                {description}
-              </motion.p>
-              <motion.div
-                variants={contentVariants}
-                initial='hidden'
-                animate={controls}
-              >
+              {false && (
+                <p className='my-8 text-muted-foreground md:text-base lg:max-w-2xl lg:text-md'>
+                  {description}
+                </p>
+              )}
+              <div className='mt-8'>
                 <Button variant='link' className='w-full sm:w-auto' asChild>
-                  <a href={buttonUrl}>
+                  <Link href={buttonUrl}>
                     {buttonText}
                     <ArrowRight className='ml-2 size-4' />
-                  </a>
+                  </Link>
                 </Button>
-              </motion.div>
+              </div>
             </>
           )}
-        </motion.div>
+        </div>
         {isLoading ? (
           <div className='flex items-center justify-center w-full py-12'>
             <Loader2 className='h-8 w-8 animate-spin' />
@@ -143,16 +94,10 @@ const Blog = ({
         ) : (
           <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8'>
             {posts.map((post, index) => (
-              <motion.div
-                key={post.id}
-                custom={index}
-                variants={cardVariants}
-                initial='hidden'
-                animate={controls}
-              >
-                <Card className='grid grid-rows-[auto_auto_1fr_auto] pt-0'>
+              <div key={post.id} className='h-full'>
+                <Card className='h-full grid grid-rows-[auto_auto_1fr_auto] pt-0 overflow-hidden'>
                   <div className='aspect-16/9 w-full'>
-                    <a
+                    <Link
                       href={`/blog/${post.slug}`}
                       className='transition-opacity duration-200 fade-in hover:opacity-70'
                     >
@@ -161,31 +106,52 @@ const Blog = ({
                         alt={post.title}
                         className='h-full w-full object-cover object-center'
                       />
-                    </a>
+                    </Link>
                   </div>
                   <CardHeader>
-                    <h3 className='text-lg font-semibold hover:underline md:text-xl'>
-                      <a href={`/blog/${post.slug}`}>{post.title}</a>
+                    <h3 className='text-md font-semibold hover:underline md:text-md'>
+                      <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                     </h3>
+                    <p className='text-muted-foreground mb-4 text-sm'>
+                      {post.summary}
+                    </p>
                   </CardHeader>
                   <CardContent>
-                    <p className='text-muted-foreground'>{post.summary}</p>
+                    <div className='flex items-center gap-3'>
+                      <Avatar className='h-8 w-8'>
+                        <AvatarImage
+                          src={post.created_by_profile_image}
+                          alt={post.created_by}
+                        />
+                        <AvatarFallback>
+                          {post.created_by.charAt(0)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className='flex flex-col'>
+                        <span className='text-sm font-medium'>
+                          {post.created_by}
+                        </span>
+                        <span className='text-xs text-muted-foreground'>
+                          {post.created_by_position}
+                        </span>
+                      </div>
+                    </div>
                   </CardContent>
                   <CardFooter>
-                    <a
+                    <Link
                       href={`/blog/${post.slug}`}
                       className='flex items-center text-foreground hover:underline'
                     >
                       Read more
                       <ArrowRight className='ml-2 size-4' />
-                    </a>
+                    </Link>
                   </CardFooter>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         )}
-      </motion.div>
+      </div>
     </section>
   );
 };

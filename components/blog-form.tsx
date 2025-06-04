@@ -44,7 +44,7 @@ import {
   Redo,
 } from 'lucide-react';
 import { toast } from 'sonner';
-import RichTextEditor from './rich-text-editor';
+import { RichTextEditor, type RichTextEditorRef } from './rich-text-editor';
 import { AddCategoryDialog } from './add-category-dialog';
 
 // Default data for dropdowns
@@ -110,6 +110,7 @@ export function BlogForm({ blogId }: BlogFormProps) {
   const [categories, setCategories] = useState<BlogCategory[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
   const [summaryLength, setSummaryLength] = useState(0);
+  const editorRef = useRef<{ clearContent?: () => void }>(null);
 
   const {
     register,
@@ -204,8 +205,24 @@ export function BlogForm({ blogId }: BlogFormProps) {
       } else {
         await createBlog(data);
         toast.success('Blog post created successfully!');
-        reset();
+        // Reset all form fields and states
+        reset({
+          title: '',
+          summary: '',
+          body: '',
+          blogCategoryId: undefined,
+          created_by: '',
+          created_by_position: '',
+          created_by_profile_image: '',
+          team: '',
+          image_url: '',
+        });
         setSelectedAuthor(null);
+        setSummaryLength(0);
+        // Clear the rich text editor content
+        if (editorRef.current?.clearContent) {
+          editorRef.current.clearContent();
+        }
       }
     } catch (error) {
       toast.error(
@@ -311,8 +328,8 @@ export function BlogForm({ blogId }: BlogFormProps) {
             <div className='flex gap-4'>
               <Select onValueChange={handleAuthorChange} value={watchedAuthor}>
                 <SelectTrigger>
-                  <SelectValue>
-                    {selectedAuthor && (
+                  {selectedAuthor ? (
+                    <SelectValue>
                       <div className='flex items-center gap-2'>
                         <Avatar className='h-6 w-6'>
                           <AvatarImage
@@ -329,8 +346,10 @@ export function BlogForm({ blogId }: BlogFormProps) {
                           </span>
                         </div>
                       </div>
-                    )}
-                  </SelectValue>
+                    </SelectValue>
+                  ) : (
+                    <SelectValue placeholder='Select author' />
+                  )}
                 </SelectTrigger>
                 <SelectContent>
                   {AUTHORS.map((author) => (
@@ -407,6 +426,7 @@ export function BlogForm({ blogId }: BlogFormProps) {
               control={control}
               render={({ field }) => (
                 <RichTextEditor
+                  ref={editorRef as React.RefObject<RichTextEditorRef>}
                   value={field.value || ''}
                   onChange={field.onChange}
                   placeholder='Start writing your blog content...'
