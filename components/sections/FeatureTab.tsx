@@ -135,7 +135,7 @@ const FeatureTab = ({ heading, description, tabs }: Feature108Props) => {
                   <p className='text-muted-foreground lg:text-lg'>
                     {tab.content.description}
                   </p>
-                  <Link href='/waitlist'>
+                  <Link href='https://app.sourzer.co/auth/signup'>
                     <Button className='mt-2.5 w-fit gap-2' size='lg'>
                       {tab.content.buttonText} <MoveRight className='w-4 h-4' />
                     </Button>

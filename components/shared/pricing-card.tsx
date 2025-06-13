@@ -193,7 +193,7 @@ export function PricingCard({
             initial='hidden'
             animate={controls}
           >
-            <Link href='/waitlist'>
+            <Link href='https://app.sourzer.co/auth/signup'>
               <Button
                 variant={isHighlighted ? 'secondary' : 'default'}
                 className='w-full relative z-10'

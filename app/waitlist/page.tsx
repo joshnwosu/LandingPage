@@ -20,6 +20,7 @@ import { parsePhoneNumber } from 'react-phone-number-input';
 import { useEffect, useState } from 'react';
 import { SuccessModal } from '@/components/shared/success-modal';
 import { motion } from 'framer-motion';
+import { joinWaitlist, WaitlistSubmissionData } from '@/lib/api'; // Import the API function
 
 // Zod schema remains the same
 const formSchema = z.object({
@@ -111,33 +112,18 @@ export default function Waitlist() {
         }
       }
 
-      // Prepare payload
-      const payload = {
+      // Prepare data for API call
+      const waitlistData: WaitlistSubmissionData = {
         name: values.name,
         email: values.email,
-        phone_number: values.phone_number || '',
+        phone_number: values.phone_number,
         country: values.country,
-        country_code: countryCode,
-        company_name: values.company_name || '',
-        reg_channel: values.reg_channel || 'linkedin',
+        company_name: values.company_name,
+        reg_channel: values.reg_channel,
       };
 
-      // Make API request
-      const response = await fetch(
-        //'https://api-sandbox.getfless.com/api/join_talent_place_waitinglist',
-        'https://api-production.billpass.app/api/join_talent_place_waitinglist',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error('Failed to join waitlist. Please try again.');
-      }
+      // Call the API function
+      await joinWaitlist(waitlistData, countryCode);
 
       // On success
       setIsModalOpen(true);
