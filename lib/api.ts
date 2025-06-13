@@ -234,7 +234,7 @@ export async function joinWaitlist(
   );
 
   if (!response.ok) {
-    throw new Error('Failed to join waitlist. Please try again.');
+    throw new Error('Failed to Join for Free. Please try again.');
   }
 
   return response.json();

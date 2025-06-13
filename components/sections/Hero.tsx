@@ -97,7 +97,7 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
 
   const handleSend = () => {
     console.log('Sending...');
-    router.push('/waitlist');
+    router.push('https://app.sourzer.co/auth/signup');
   };
 
   return (
@@ -203,7 +203,7 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
               initial='hidden'
               animate='visible'
             >
-              <Link href='/waitlist'>
+              <Link href='https://app.sourzer.co/auth/signup'>
                 {/* signup */}
                 <Button
                   size='lg'
@@ -220,9 +220,9 @@ function Hero({ badge = 'Ai Powered' }: { badge?: string; title?: string }) {
               initial='hidden'
               animate='visible'
             >
-              <Link href='/waitlist'>
+              <Link href='https://app.sourzer.co/auth/signup'>
                 <Button size='lg' className='gap-4 cursor-pointer font-sans'>
-                  Join waitlist <MoveRight className='w-4 h-4' />
+                  Join for Free <MoveRight className='w-4 h-4' />
                 </Button>
               </Link>
             </motion.div>
