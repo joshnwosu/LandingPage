@@ -140,7 +140,7 @@ export function NavBar({ items, className }: NavBarProps) {
               size='lg'
               className='gap-4 cursor-pointer font-sans rounded-full'
             >
-              Get Started
+              Try for free
             </Button>
           </Link>
         </div>

@@ -16,9 +16,7 @@ export default function Footer() {
       <div className='container max-w-7xl mx-auto px-4 py-12 md:px-6 lg:px-8'>
         <div className='grid gap-12 md:grid-cols-2 lg:grid-cols-4'>
           <div className='relative'>
-            <h2 className='mb-4 text-2xl font-light tracking-tight'>
-            Sourzer
-            </h2>
+            <h2 className='mb-4 text-2xl font-light tracking-tight'>Sourzer</h2>
             <p className='mb-6 text-muted-foreground'>
               Never miss top talents again!
             </p>
@@ -143,10 +141,16 @@ export default function Footer() {
           </p>
 
           <nav className='flex gap-4 text-sm'>
-            <a href='#' className='transition-colors hover:text-primary'>
+            <a
+              href='/privacy-policy'
+              className='transition-colors hover:text-primary'
+            >
               Privacy Policy
             </a>
-            <a href='#' className='transition-colors hover:text-primary'>
+            <a
+              href='/terms-of-service'
+              className='transition-colors hover:text-primary'
+            >
               Terms of Service
             </a>
           </nav>
