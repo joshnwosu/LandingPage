@@ -207,7 +207,9 @@ export default function PrivacyPolicy() {
               </a>
               <div className='flex items-center'>
                 <MapPin className='w-4 h-4 mr-3 text-blue-600' />
-                <span>Sourzer, [Insert Address]</span>
+                <span>
+                  Sourzer, 3a Habitat close, Lekki phase 1, Lagos Nigeria
+                </span>
               </div>
             </div>
           </CardContent>
