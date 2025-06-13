@@ -31,7 +31,7 @@ export default function Home() {
             title='Welcome to Our Platform'
             description='Transform your ideas into reality with our comprehensive suite of development tools and resources.'
             ctaText='Book a Demo'
-            ctaHref='https://app.sourzer.co/auth/signup'
+            ctaHref='http://calendly.com/sourzer/sourzer-demo'
             bottomImage={{
               light: '/screenshots/listing-light.png',
               dark: '/screenshots/listing-dark.png',
