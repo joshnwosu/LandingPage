@@ -67,8 +67,36 @@ export interface BlogResponse {
   data: Blog;
 }
 
+// Waitlist interfaces
+export interface WaitlistSubmissionData {
+  name: string;
+  email: string;
+  phone_number?: string;
+  country: string;
+  company_name?: string;
+  reg_channel?: string;
+}
+
+export interface WaitlistPayload {
+  name: string;
+  email: string;
+  phone_number: string;
+  country: string;
+  country_code: string;
+  company_name: string;
+  reg_channel: string;
+}
+
+export interface WaitlistResponse {
+  success: boolean;
+  message: string;
+  statusCode: number;
+  data?: any;
+}
+
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
+// Blog API functions
 export async function createBlog(data: CreateBlogData): Promise<Blog> {
   const response = await fetch(`${BASE_URL}/blogs`, {
     method: 'POST',
@@ -173,6 +201,40 @@ export async function updateBlogCategory(
 
   if (!response.ok) {
     throw new Error(`Failed to update blog category: ${response.statusText}`);
+  }
+
+  return response.json();
+}
+
+// Waitlist API functions
+export async function joinWaitlist(
+  data: WaitlistSubmissionData,
+  countryCode: string = 'NG'
+): Promise<WaitlistResponse> {
+  // Prepare payload with defaults
+  const payload: WaitlistPayload = {
+    name: data.name,
+    email: data.email,
+    phone_number: data.phone_number || '',
+    country: data.country,
+    country_code: countryCode,
+    company_name: data.company_name || '',
+    reg_channel: data.reg_channel || 'linkedin',
+  };
+
+  const response = await fetch(
+    'https://api-production.billpass.app/api/join_talent_place_waitinglist',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error('Failed to join waitlist. Please try again.');
   }
 
   return response.json();
