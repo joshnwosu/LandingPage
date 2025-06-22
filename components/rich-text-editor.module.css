@@ -1,5 +1,5 @@
 .editor {
-  color: white;
+  color: red;
 }
 
 .editor :global(.ProseMirror) {
@@ -8,7 +8,7 @@
 
 .editor :global(.ProseMirror p),
 .editor :global(.ProseMirror strong) {
-  color: white;
+  color: var(--color-foreground);
 }
 
 .editor :global(.ProseMirror h1),

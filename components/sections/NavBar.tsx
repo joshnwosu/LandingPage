@@ -145,7 +145,7 @@ export function NavBar({ items, className }: NavBarProps) {
           </Link>
         </div>
 
-        {false && <ModeToggle />}
+        {true && <ModeToggle />}
       </div>
     </div>
   );
