@@ -91,15 +91,13 @@ export default function TermsOfService() {
   ];
 
   return (
-    <div className='min-h-screen bg-white font-sans'>
+    <div className='min-h-scree font-sans'>
       <div className='max-w-4xl mx-auto px-4 py-12'>
         {/* Header */}
         <div className='text-center mb-12'>
           <div className='flex items-center justify-center mb-4'>
             <Scale className='w-8 h-8 text-purple-600 mr-3' />
-            <h1 className='text-3xl font-medium text-gray-900'>
-              Terms of Service
-            </h1>
+            <h1 className='text-3xl font-medium'>Terms of Service</h1>
           </div>
           <div className='flex items-center justify-center space-x-4 mb-6'>
             <Badge variant='secondary' className='text-sm'>
@@ -107,7 +105,7 @@ export default function TermsOfService() {
               Effective Date: 12 June 2025
             </Badge>
           </div>
-          <p className='text-md text-gray-600 max-w-3xl mx-auto leading-relaxed'>
+          <p className='text-md text-muted-foreground max-w-3xl mx-auto leading-relaxed'>
             These Terms of Service ("Terms") govern your access to and use of
             the <span className='font-semibold text-purple-600'>Sourzer</span>{' '}
             platform. By using the Service, you agree to these Terms.
@@ -117,12 +115,9 @@ export default function TermsOfService() {
         {/* Terms Sections */}
         <div className='space-y-6'>
           {sections.map((section) => (
-            <Card
-              key={section.id}
-              className='shadow-none border-1 border-sidebar/5 bg-sidebar-foreground'
-            >
+            <Card key={section.id} className='shadow-none'>
               <CardHeader>
-                <CardTitle className='flex items-center text-xl text-gray-900'>
+                <CardTitle className='flex items-center text-xl'>
                   {section.icon}
                   <span className='ml-3'>
                     {section.id}. {section.title}
@@ -130,7 +125,7 @@ export default function TermsOfService() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className='text-gray-600 leading-relaxed mb-3'>
+                <p className='text-muted-foreground leading-relaxed mb-3'>
                   {section.content}
                 </p>
                 {section.list && (
@@ -138,7 +133,9 @@ export default function TermsOfService() {
                     {section.list.map((item, index) => (
                       <div key={index} className='flex items-start'>
                         <div className='w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0'></div>
-                        <p className='text-gray-600 leading-relaxed'>{item}</p>
+                        <p className='text-muted-foreground leading-relaxed'>
+                          {item}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -149,21 +146,18 @@ export default function TermsOfService() {
         </div>
 
         {/* Contact Section */}
-        <Card className='mt-8 shadow-none border-1 border-sidebar/5 bg-sidebar-foreground'>
+        <Card className='mt-8 shadow-none'>
           <CardHeader>
-            <CardTitle className='flex items-center text-xl text-gray-900'>
+            <CardTitle className='flex items-center text-xl'>
               <Phone className='w-5 h-5 mr-3' />
               10. Contact
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className='text-gray-600 leading-relaxed mb-4'>
+            <p className='text-muted-foreground leading-relaxed mb-4'>
               For questions about these Terms, contact:
             </p>
-            <a
-              className='flex items-center text-gray-700'
-              href='mailto:legal@sourzer.co'
-            >
+            <a className='flex items-center' href='mailto:legal@sourzer.co'>
               <Mail className='w-4 h-4 mr-3 text-purple-600' />
               <span className='font-semibold text-purple-600'>
                 legal@sourzer.co

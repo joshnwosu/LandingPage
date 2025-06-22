@@ -1,8 +1,8 @@
 'use client';
 
-import { Blog, fetchBlogs } from '@/lib/api';
+import { Blog, fetchBlogBySlug } from '@/lib/api';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -14,14 +14,16 @@ interface BlogPreviewProps {
 }
 
 export default function BlogPreview({ slug }: BlogPreviewProps) {
-  const [post, setPost] = useState<Blog>();
+  const [post, setPost] = useState<any>();
   const router = useRouter();
 
   useEffect(() => {
     const fetchBlog = async () => {
-      const { data } = await fetchBlogs(1, 100);
-      const post = data.blogs.find((blog) => blog.slug === slug);
-      setPost(post);
+      const { data } = await fetchBlogBySlug(slug);
+      setPost(data);
+
+      // console.log(data);
+      // const post = data.blogs.find((blog) => blog.slug === slug);
     };
 
     fetchBlog();

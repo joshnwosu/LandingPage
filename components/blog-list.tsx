@@ -145,7 +145,7 @@ export function BlogList() {
                     variant='secondary'
                     className='flex-1'
                     onClick={() => {
-                      window.location.href = `/admin/blogs?edit=${blog.id}`;
+                      window.location.href = `/admin/blogs?edit=${blog.slug}`;
                     }}
                   >
                     <Pencil className='w-4 h-4 mr-2' />

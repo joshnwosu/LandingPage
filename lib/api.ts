@@ -128,7 +128,7 @@ export async function fetchBlogs(
   return response.json();
 }
 
-export async function fetchBlog(slug: string): Promise<BlogResponse> {
+export async function fetchBlogBySlug(slug: string): Promise<BlogResponse> {
   const response = await fetch(`${BASE_URL}/blogs/${slug}`);
 
   if (!response.ok) {

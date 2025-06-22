@@ -27,7 +27,7 @@ import {
   createBlog,
   fetchBlogCategories,
   type BlogCategory,
-  fetchBlog,
+  fetchBlogBySlug,
   updateBlog,
 } from '@/lib/api';
 import {
@@ -129,7 +129,9 @@ export function BlogForm({ blogId }: BlogFormProps) {
   const loadBlog = async (id: string) => {
     try {
       setIsLoading(true);
-      const blog = await fetchBlog(id);
+      const blog = await fetchBlogBySlug(id);
+
+      console.log('The blog d: ', blog);
 
       // Set form values
       setValue('title', blog.data.title);
