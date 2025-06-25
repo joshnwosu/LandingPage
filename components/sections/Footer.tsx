@@ -9,6 +9,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -55,9 +56,11 @@ export default function Footer() {
           <div>
             <h3 className='mb-4 text-lg font-semibold'>Contact Us</h3>
             <address className='space-y-2 text-sm not-italic'>
-              <p>3a Habitat Close</p>
-              <p>Lekki phase 1, Nigeria</p>
-              <p>Phone: (234) 8085-732-766</p>
+            <Link href='/waitlist'>
+            <p>Book A Demo</p>
+          </Link>
+              {/* <p>Lekki phase 1, Nigeria</p>
+              <p>Phone: (234) 8085-732-766</p> */}
               <p>Email: tobi@sourzer.co</p>
             </address>
           </div>
@@ -137,7 +140,7 @@ export default function Footer() {
         </div>
         <div className='mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row'>
           <p className='text-sm text-muted-foreground'>
-            © 2025 Your Company. All rights reserved.
+            © 2025, Sourzer. All rights reserved.
           </p>
 
           <nav className='flex gap-4 text-sm'>
