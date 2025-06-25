@@ -12,6 +12,7 @@ interface NavItem {
   name: string;
   url: string;
   icon: LucideIcon;
+  isExternal?: boolean; // Add flag for external links
 }
 
 interface NavBarProps {
@@ -33,14 +34,18 @@ export function NavBar({ items, className }: NavBarProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Set up Intersection Observer for scroll spy
+  // Set up Intersection Observer for scroll spy (only for hash links)
   useEffect(() => {
+    const hashItems = items.filter((item) => item.url.startsWith('#'));
+
+    if (hashItems.length === 0) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const sectionId = entry.target.id;
-            const matchingItem = items.find(
+            const matchingItem = hashItems.find(
               (item) => item.url === `#${sectionId}`
             );
             if (matchingItem) {
@@ -57,8 +62,8 @@ export function NavBar({ items, className }: NavBarProps) {
       }
     );
 
-    // Observe all sections
-    items.forEach((item) => {
+    // Observe all sections (only hash links)
+    hashItems.forEach((item) => {
       const sectionId = item.url.replace('#', '');
       const element = document.getElementById(sectionId);
       if (element) observer.observe(element);
@@ -68,17 +73,23 @@ export function NavBar({ items, className }: NavBarProps) {
     return () => observer.disconnect();
   }, [items]);
 
-  // Handle smooth scrolling to section
-  const scrollToSection = (url: string) => {
-    const sectionId = url.replace('#', '');
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      const matchingItem = items.find((item) => item.url === url);
-      if (matchingItem) {
-        setActiveTab(matchingItem.name);
+  // Handle smooth scrolling to section or navigation
+  const handleNavClick = (item: NavItem, e: React.MouseEvent) => {
+    if (item.url.startsWith('#')) {
+      // Hash link - smooth scroll
+      e.preventDefault();
+      const sectionId = item.url.replace('#', '');
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setActiveTab(item.name);
       }
+    } else if (item.isExternal) {
+      // External link - open in new tab
+      e.preventDefault();
+      window.open(item.url, '_blank', 'noopener,noreferrer');
     }
+    // Regular internal links will navigate normally via Next.js Link
   };
 
   return (
@@ -97,10 +108,7 @@ export function NavBar({ items, className }: NavBarProps) {
             <Link
               key={item.name}
               href={item.url}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(item.url);
-              }}
+              onClick={(e) => handleNavClick(item, e)}
               className={cn(
                 'relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors',
                 'text-foreground/80 hover:text-primary',
@@ -134,8 +142,7 @@ export function NavBar({ items, className }: NavBarProps) {
         })}
 
         <div className='hidden md:flex flex-row gap-3'>
-          <Link href='https://app.sourzer.co/auth/signup'>
-            {/* signup */}
+          <Link href='https://app.sourzer.co/auth/login'>
             <Button
               size='lg'
               className='gap-4 cursor-pointer font-sans rounded-full'
@@ -145,7 +152,7 @@ export function NavBar({ items, className }: NavBarProps) {
           </Link>
         </div>
 
-        {true && <ModeToggle />}
+        <ModeToggle />
       </div>
     </div>
   );

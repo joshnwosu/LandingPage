@@ -75,7 +75,7 @@ const CandidateSourcingSection = () => {
   }, []);
 
   return (
-    <section className='text-white py-20 px-6'>
+    <section className='py-20 px-6'>
       <div className='max-w-7xl mx-auto'>
         <div className='space-y-4 flex flex-col justify-center items-center mb-12'>
           <h1 className='text-3xl md:text-7xl max-w-4xl tracking-tighter text-center font-sans capitalize'>
